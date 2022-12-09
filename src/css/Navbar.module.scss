@@ -10,7 +10,7 @@
 }
 .logo {
   & > span {
-    color: white;
+    color: yellow;
     font-size: 1.8em;
     font-weight: 700;
   }
@@ -21,6 +21,13 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: white;
+  color: yellow;
   font-size: 1.8em;
+}
+.searchContainer {
+  width: 400px;
+
+  & .searchInput {
+    width: 100%;
+  }
 }
