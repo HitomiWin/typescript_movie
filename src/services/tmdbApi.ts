@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ETrendingType, ECategoryType } from "../shared/type";
+import { ETrendingType, ECategoryType, Data } from "../shared/type";
 
 //access to api key
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -10,7 +10,9 @@ const get = async (endpoint: string) => {
   return response.data;
 };
 
-export const getCategorizedMovies = async (type: ECategoryType) => {
+export const getCategorizedMovies = async (
+  type: ECategoryType
+): Promise<Data> => {
   return get(`/movie/${type}?api_key=${API_KEY}&region=us&language=en-US`);
 };
 
@@ -56,7 +58,9 @@ export const getMoviesBySearch = async ({ query = null, page = 1 }) => {
     : null;
 };
 
-export const getTrendingMovies = async (time_window: ETrendingType) => {
+export const getTrendingMovies = async (
+  time_window: ETrendingType
+): Promise<Data> => {
   return get(`/trending/movie/${time_window}?api_key=${API_KEY}`);
 };
 

@@ -1,10 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;1,100&display=swap");
+
+:root {
+  --v-spance: clamp(
+    90px,
+    9vw,
+    120px
+  ); /* spance screen <1000px 90px, 120 / 1366 px (screen) * 100 = 9vw, screen >1334px 120px*/
+}
 
 body {
   margin: 0;
   font-family: "Lato", "Roboto", "Roboto Condensed", sans-serif;
-  background-color: white;
+  background-color: #5b5953;
 }
 h1,
 h2,
