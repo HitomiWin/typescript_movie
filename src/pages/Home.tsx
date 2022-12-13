@@ -4,10 +4,10 @@ import TrendignMovies from "../components/TrendignMovies";
 
 const Home = () => {
   return (
-    <>
+    <section>
       <Hero />
       <TrendignMovies />
-    </>
+    </section>
   );
 };
 

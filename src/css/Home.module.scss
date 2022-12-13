@@ -6,9 +6,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   & .headingTxt {
     font-family: "MonstSerrat", sans-serif;
-    font-size: clamp(32px, 5.2vw, 40px);
+    font-size: clamp(20px, 5.2vw, 40px);
     min-height: 0vw;
     font-weight: 300;
 
@@ -22,25 +23,35 @@ h2 {
   color: yellow;
 }
 
-.btn {
-  width: 100px;
-  padding: 5px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid yellow;
-  font-size: 18px;
-  text-align: center;
-  text-shadow: o o 6px #00000052;
-  cursor: pointer;
-  color: yellow;
-}
-.active {
-  background-color: black;
-}
-.inactive {
-  background-color: gray;
-  &:hover {
-    color: white;
+.btns {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  .btn {
+    width: 100px;
+    padding: clamp(2px, 5.2vw, 5px);
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid yellow;
+    font-size: clamp(12px, 5.2vw, 16px);
+    text-shadow: o o 6px #00000052;
+    cursor: pointer;
+    color: yellow;
+  }
+  .active {
     background-color: black;
+  }
+  .inactive {
+    background-color: gray;
+    &:hover {
+      color: white;
+      background-color: black;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btns {
+    flex-direction: row;
   }
 }

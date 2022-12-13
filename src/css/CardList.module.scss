@@ -1,25 +1,26 @@
 .listContainer {
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: (repeat(auto-fill, minmax(200px, 1fr)));
-  row-gap: 32px 25px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  gap: 25px;
 }
 
 .card {
   display: block;
-  width: 120px;
-
+  & img {
+    border-radius: 5px;
+    aspect-ratio: 2/3;
+  }
   & h3 {
-    margin: 1em 0 0.5em;
     font-size: clamp(12px, 2wv, 20px);
     min-height: 0vw;
+    color: yellow;
   }
   & p {
     font-size: clamp(10px, 1.6vw, 14px);
-  }
-  & img {
-    aspect-ratio: 2/3;
-    object-fit: cover;
+    margin-top: 0;
+    color: yellow;
   }
 }

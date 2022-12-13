@@ -8,19 +8,19 @@ interface Props {
 
 const MovieCard: FC<Props> = ({ movie }) => {
   const posterUrl = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
     : null;
 
   return (
     <>
       <article className={styles.card}>
-        <figure>
+        <div className={styles.image}>
           <img
             src={posterUrl ?? "../../images/no-image-icon-23485.png"}
             alt=""
-            width={posterUrl ? "500" : "200"}
+            width="200"
           />
-        </figure>
+        </div>
         <h3>{movie.title}</h3>
         <p>{movie.release_date}</p>
       </article>
