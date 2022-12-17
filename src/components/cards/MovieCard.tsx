@@ -14,15 +14,17 @@ const MovieCard: FC<Props> = ({ movie }) => {
   return (
     <>
       <article className={styles.card}>
-        <div className={styles.image}>
+        <div>
           <img
             src={posterUrl ?? "../../images/no-image-icon-23485.png"}
             alt=""
             width="200"
           />
         </div>
-        <h3>{movie.title}</h3>
-        <p>{movie.release_date}</p>
+        <div className={styles.movieCardTitle}>
+          <h3>{movie.title}</h3>
+          <p>{movie.release_date}</p>
+        </div>
       </article>
     </>
   );

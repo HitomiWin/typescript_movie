@@ -9,7 +9,7 @@
 
   & .headingTxt {
     font-family: "MonstSerrat", sans-serif;
-    font-size: clamp(20px, 5.2vw, 40px);
+    font-size: clamp(24px, 5.2vw, 40px);
     min-height: 0vw;
     font-weight: 300;
 
@@ -21,6 +21,7 @@
 
 h2 {
   color: yellow;
+  margin: 0;
 }
 
 .btns {
@@ -35,18 +36,33 @@ h2 {
     border: 1px solid yellow;
     font-size: clamp(12px, 5.2vw, 16px);
     text-shadow: o o 6px #00000052;
-    cursor: pointer;
     color: yellow;
   }
   .active {
     background-color: black;
+    cursor: inherit;
   }
   .inactive {
     background-color: gray;
+    cursor: pointer;
+
     &:hover {
       color: white;
       background-color: black;
     }
+  }
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  font-family: "MonstSerrat", sans-serif;
+  & h2 {
+    color: white;
   }
 }
 

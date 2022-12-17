@@ -3,33 +3,32 @@ import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
 import FadeLoader from "react-spinners/FadeLoader";
 import styles from "../css/Home.module.scss";
+import { getTrendingMovies } from "../services";
 
 import MovieCardList from "./lists/MovieCardList";
-
-import { getTrendingMovies } from "../services/tmdbApi";
-import { ETrendingType } from "../shared/type";
+import { ITrendingType } from "../shared/type";
 
 const initialParams = {
-  timeWindow: ETrendingType.day,
+  timeWindow: ITrendingType.day,
 };
 
 const TrendignMovies = () => {
   const [params, setParams] = useUrlSearchParams(initialParams);
   const [timeWindow, setTimeWindow] = useState<
-    ETrendingType | null | undefined
+    ITrendingType | null | undefined
   >(
-    params.timeWindow === ETrendingType.day
-      ? ETrendingType.day
-      : ETrendingType.week
+    params.timeWindow === ITrendingType.day
+      ? ITrendingType.day
+      : ITrendingType.week
   );
 
-  const { isLoading, data } = useQuery(
+  const { isLoading, isError, error, data } = useQuery(
     ["trendin-movies", params.timeWindow],
     () =>
       getTrendingMovies(
-        params.timeWindow === ETrendingType.day
-          ? ETrendingType.day
-          : ETrendingType.week
+        params.timeWindow === ITrendingType.day
+          ? ITrendingType.day
+          : ITrendingType.week
       )
   );
   useEffect(() => {
@@ -38,8 +37,20 @@ const TrendignMovies = () => {
     }
   }, [timeWindow, params, setParams]);
 
-  const isDaily = timeWindow === ETrendingType.day;
-  const isWeekly = timeWindow === ETrendingType.week;
+  const isDaily = timeWindow === ITrendingType.day;
+  const isWeekly = timeWindow === ITrendingType.week;
+  if (isError) {
+    if (error instanceof Error) {
+      return (
+        <div className={styles.error}>
+          <h2 className={styles.errorText}>
+            {" "}
+            Something went wrong. Please reload the page.
+          </h2>
+        </div>
+      );
+    }
+  }
 
   return (
     <section className={styles.homeContents}>
@@ -54,7 +65,7 @@ const TrendignMovies = () => {
             className={`${styles.btn} ${
               isDaily ? styles.active : styles.inactive
             }`}
-            onClick={() => setTimeWindow(ETrendingType.day)}
+            onClick={() => setTimeWindow(ITrendingType.day)}
             disabled={isDaily}>
             Daily
           </button>
@@ -62,13 +73,19 @@ const TrendignMovies = () => {
             className={`${styles.btn} ${
               isWeekly ? styles.active : styles.inactive
             }`}
-            onClick={() => setTimeWindow(ETrendingType.week)}
+            onClick={() => setTimeWindow(ITrendingType.week)}
             disabled={isWeekly}>
             Weekly
           </button>
         </div>
       </div>
-      {isLoading ? <FadeLoader /> : data ? <MovieCardList data={data} /> : null}
+      {isLoading ? (
+        <div className={styles.spinner}>
+          <FadeLoader />
+        </div>
+      ) : data ? (
+        <MovieCardList data={data} />
+      ) : null}
     </section>
   );
 };
