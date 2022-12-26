@@ -4,6 +4,7 @@ import { getMovieDetails } from "../services";
 import home from "../css/Home.module.scss";
 import { FadeLoader } from "react-spinners";
 import MovieDetails from "../components/MovieDetails";
+import PersonCardList from "../components/lists/PersonCardList";
 
 const MovieDetailsPage = () => {
   const { movie_id } = useParams();
@@ -32,7 +33,14 @@ const MovieDetailsPage = () => {
     }
   }
 
-  return <section>{data ? <MovieDetails movie={data} /> : null}</section>;
+  return (
+    <>
+      <section>{data ? <MovieDetails movie={data} /> : null}</section>
+      <section>
+        {data ? <PersonCardList casts={data.credits.cast} /> : null}
+      </section>
+    </>
+  );
 };
 
 export default MovieDetailsPage;

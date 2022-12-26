@@ -7,7 +7,7 @@
     20px,
     2.2vw,
     30px
-  ); /* space screen <1000px 20px, 30 / 1366 px (screen) * 100 = 2.2vw, screen >1334px 30px*/
+  ); /* space screen <1000px 20px, 30 / 1366 px (screen) * 100 = 2.2vw, screen >1334px 120px*/
 }
 
 body {

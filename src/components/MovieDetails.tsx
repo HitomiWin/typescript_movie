@@ -41,18 +41,18 @@ const MovieDetails: FC<Props> = ({ movie }) => {
           />
           <div className={styles.text}>
             <div className={styles.textContents}>
-              <h2>{movie.title}</h2>
+              <h2 className={styles.head}>{movie.title}</h2>
               <p>
                 Release: {movie.release_date} / {movie.runtime?.toString()} mins
               </p>
               <p>{movie.genres.map(({ name }) => name).join(" ")}</p>
             </div>
             <div className={styles.textContents}>
-              <h3>Overview</h3>
+              <h3 className={styles.head}>Overview</h3>
               <p>{movie.overview}</p>
             </div>
             <div className={styles.textContents}>
-              <h3>Crew</h3>
+              <h3 className={styles.head}>Crew</h3>
               <div className={styles.crewNameJobContainer}>
                 {topFiveCrewWithDirector.map(({ name, job }, i) => (
                   <div className={styles.crewNameJob} key={i}>
