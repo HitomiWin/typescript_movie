@@ -18,12 +18,10 @@
     /* 16 / 768 (ipad) *100 = 2vw*/
     font-size: clamp(12px, 2vw, 20px);
     min-height: 0vw;
-    color: yellow;
   }
   & p {
     /* 12 / 768 (ipad) *100 = 1.6vw*/
     font-size: clamp(10px, 1.6vw, 14px);
     margin-top: 0;
-    color: yellow;
   }
 }

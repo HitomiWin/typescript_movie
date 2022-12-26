@@ -1,0 +1,69 @@
+.imgText {
+  display: grid;
+  grid-template-rows: max-content;
+  & > * {
+    grid-area: 1/1;
+  }
+  & > .backgroundImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+  }
+}
+
+.imgTextContainer {
+  padding: var(--v-space) 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(45px, 6vw, 80px);
+  & .text {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 6vw, 35px);
+    .textContents {
+      & h2 {
+        margin: 0 1em 0 0 0.5em;
+        font-size: clamp(20px, 2.6vw, 40px);
+      }
+      & h3 {
+        margin: 0 1em 0 0 0.5em;
+        font-size: clamp(16px, 2vw, 24px);
+      }
+
+      & p {
+        margin: 0 1em 0 0 0.5em;
+        font-size: clamp(12px, 2vw, 20px);
+      }
+    }
+  }
+  > .img {
+    display: block;
+    max-width: 100%;
+    border-radius: 5px;
+    z-index: 1;
+  }
+}
+
+.crewNameJobContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 25px;
+  & > .crewNameJob {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .imgTextContainer {
+    flex-direction: row;
+    > .text {
+      flex: 2;
+    }
+    > .img {
+      flex: 1;
+      display: block;
+    }
+  }
+}

@@ -17,19 +17,17 @@ export enum ICategoryTitle {
 
 export interface Movie {
   poster_path: string | null;
+  backdrop_path: string | null;
   adult: boolean;
   overview: string;
   release_date: string;
-  genre_ids: Genres;
+  genres: Genre[];
   id: number;
   original_title: string;
   original_language: string;
   title: string;
-  backdrop_path: string | null;
-  popularity: number;
-  vote_count: number;
-  video: boolean;
-  vote_average: number;
+  runtime: number | undefined;
+  credits: Credits;
 }
 
 export interface Data {
@@ -42,10 +40,6 @@ export interface Data {
 export interface Genre {
   id: number;
   name: string;
-}
-
-export interface Genres {
-  genres: Genre[];
 }
 
 export interface Cast {
@@ -79,4 +73,10 @@ export interface Crew {
   popularity: number;
   profile_path: string;
   credit_id: string;
+  job: string;
+}
+
+export interface Credits {
+  cast: Cast[];
+  crew: Crew[];
 }
