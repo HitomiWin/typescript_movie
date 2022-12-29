@@ -47,7 +47,7 @@ export interface Cast {
   gender: number;
   id: number;
   title: string;
-  known_for_department: string;
+  also_known_as: string[];
   biography: string;
   place_of_birth: string;
   birthday: string;
@@ -60,16 +60,12 @@ export interface Cast {
   credit_id: string;
   order: number;
   poster_path: string;
-  vote_average: number;
 }
 
 export interface Crew {
   adult: boolean;
-  gender: number;
   id: number;
-  known_for_department: string;
   name: string;
-  original_name: string;
   popularity: number;
   profile_path: string;
   credit_id: string;

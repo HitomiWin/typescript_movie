@@ -1,15 +1,6 @@
 .imgText {
   display: grid;
   grid-template-rows: max-content;
-  & > * {
-    grid-area: 1/1;
-  }
-  & > .backgroundImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.15;
-  }
 }
 
 .imgTextContainer {
@@ -18,21 +9,26 @@
   flex-direction: column;
   gap: clamp(45px, 6vw, 80px);
   & .text {
-    display: flex;
-    flex-direction: column;
+    padding-right: 10px;
+    max-height: 400px;
     gap: clamp(20px, 6vw, 35px);
+    overflow: scroll;
     .textContents {
       & .head {
         margin-bottom: 0.5em;
       }
       & h2 {
         font-size: clamp(20px, 2.6vw, 40px);
+        font-weight: 700;
       }
       & h3 {
         font-size: clamp(16px, 2vw, 24px);
       }
       & p {
         font-size: clamp(12px, 2vw, 20px);
+        margin-bottom: 0;
+        padding-bottom: 22px;
+        line-height: 22px;
       }
     }
   }
@@ -41,29 +37,17 @@
     max-width: 400px;
     min-width: 300px;
     border-radius: var(--v-imageBorderRadius);
-    z-index: 1;
-  }
-}
-
-.crewNameJobContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px 25px;
-  & > .crewNameJob {
-    display: flex;
-    flex-direction: column;
   }
 }
 
 @media screen and (min-width: 768px) {
   .imgTextContainer {
     flex-direction: row;
-    > .text {
-      flex: 2;
+    & .text {
+      min-height: 600px;
     }
-    > .img {
-      flex: 1;
-      display: block;
+    & > .img {
+      min-width: 400px;
     }
   }
 }

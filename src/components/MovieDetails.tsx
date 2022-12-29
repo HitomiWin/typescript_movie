@@ -29,7 +29,7 @@ const MovieDetails: FC<Props> = ({ movie }) => {
 
   return (
     <>
-      <section className={`${styles.imgText}`}>
+      <div className={`${styles.imgText}`}>
         {backdropUrl && (
           <img className={`${styles.backgroundImg}`} src={backdropUrl} alt="" />
         )}
@@ -64,7 +64,7 @@ const MovieDetails: FC<Props> = ({ movie }) => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };

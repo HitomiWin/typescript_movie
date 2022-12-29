@@ -1,5 +1,11 @@
 import axios from "axios";
-import { ITrendingType, ICategoryType, Data, Movie } from "../shared/type";
+import {
+  ITrendingType,
+  ICategoryType,
+  Data,
+  Movie,
+  Cast,
+} from "../shared/type";
 
 //access to api key
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -34,11 +40,11 @@ export const getMovie = async (id: number) => {
   return get(`/movie/${id}?api_key=${API_KEY}`);
 };
 
-export const getPerson = async (person_id: number) => {
+export const getPerson = async (person_id: number): Promise<Cast> => {
   return get(`/person/${person_id}?api_key=${API_KEY}&language=en-US`);
 };
 
-export const getMoviesByPerson = async (person_id: number) => {
+export const getMoviesByPerson = async (person_id: number): Promise<Data> => {
   return get(
     `/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&with_people=${person_id}`
   );
