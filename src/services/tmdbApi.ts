@@ -5,7 +5,9 @@ import {
   Data,
   Movie,
   Cast,
+  SearchQueryArg,
 } from "../shared/type";
+import { InitialType } from "use-url-search-params";
 
 //access to api key
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -19,7 +21,9 @@ const get = async (endpoint: string) => {
 export const getCategorizedMovies = async (
   type: ICategoryType
 ): Promise<Data> => {
-  return get(`/movie/${type}?api_key=${API_KEY}&region=us&language=en-US`);
+  return get(
+    `/movie/${type}?api_key=${API_KEY}&region=us&language=en-US&include_adult=false`
+  );
 };
 
 export const getGenre = async () => {
@@ -50,16 +54,29 @@ export const getMoviesByPerson = async (person_id: number): Promise<Data> => {
   );
 };
 
-export const getRelatedMovies = async (movie_id: number) => {
+export const getRelatedMovies = async (movie_id: number): Promise<Data> => {
   return get(
-    `/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=1`
+    `/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`
   );
 };
 
-export const getMoviesBySearch = async ({ query = null, page = 1 }) => {
+export const getMoviesBySearch = async ({
+  query,
+  page,
+}: InitialType): Promise<Data> => {
   return query
     ? get(
         `/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
+      )
+    : null;
+};
+export const getPersonsBySearch = async ({
+  query,
+  page,
+}: InitialType): Promise<Cast> => {
+  return query
+    ? get(
+        `/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`
       )
     : null;
 };
@@ -67,5 +84,7 @@ export const getMoviesBySearch = async ({ query = null, page = 1 }) => {
 export const getTrendingMovies = async (
   time_window: ITrendingType
 ): Promise<Data> => {
-  return get(`/trending/movie/${time_window}?api_key=${API_KEY}`);
+  return get(
+    `/trending/movie/${time_window}?api_key=${API_KEY}&include_adult=false`
+  );
 };

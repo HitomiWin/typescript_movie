@@ -76,3 +76,8 @@ export interface Credits {
   cast: Cast[];
   crew: Crew[];
 }
+
+export interface SearchQueryArg {
+  query: string;
+  page: number;
+}
