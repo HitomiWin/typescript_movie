@@ -34,7 +34,8 @@
     color: yellow;
   }
   .active {
-    background-color: black;
+    background-color: yellow;
+    color: black;
     cursor: inherit;
   }
   .inactive {
@@ -42,7 +43,7 @@
     cursor: pointer;
 
     &:hover {
-      color: yellow;
+      color: yellowgreen;
       background-color: black;
     }
   }

@@ -10,10 +10,16 @@
 
 .card {
   display: block;
-  margin: 1em 0 3em 0;
+  margin: 1em 0 3em 1em;
+  transition: transform 0.5s, box-shadow 1s;
+  &:hover {
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 10px 10px greenyellow;
+  }
   & img {
     border-radius: 5px;
     aspect-ratio: 2/3;
+    cursor: pointer;
   }
   & h3 {
     /* 16 / 768 (ipad) *100 = 2vw*/

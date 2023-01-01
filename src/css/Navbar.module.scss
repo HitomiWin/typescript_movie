@@ -13,6 +13,9 @@
     color: yellow;
     font-size: 1.8em;
     font-weight: 700;
+    &:hover {
+      color: greenyellow;
+    }
   }
 }
 .navbtn {
@@ -23,6 +26,9 @@
   cursor: pointer;
   color: yellow;
   font-size: 1.8em;
+  &:hover {
+    color: greenyellow;
+  }
 }
 .searchContainer {
   width: 400px;
