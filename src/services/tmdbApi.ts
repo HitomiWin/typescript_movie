@@ -2,10 +2,10 @@ import axios from "axios";
 import {
   ITrendingType,
   ICategoryType,
-  Data,
+  Movies,
   Movie,
   Cast,
-  SearchQueryArg,
+  People,
 } from "../shared/type";
 import { InitialType } from "use-url-search-params";
 
@@ -20,7 +20,7 @@ const get = async (endpoint: string) => {
 
 export const getCategorizedMovies = async (
   type: ICategoryType
-): Promise<Data> => {
+): Promise<Movies> => {
   return get(
     `/movie/${type}?api_key=${API_KEY}&region=us&language=en-US&include_adult=false`
   );
@@ -48,13 +48,13 @@ export const getPerson = async (person_id: number): Promise<Cast> => {
   return get(`/person/${person_id}?api_key=${API_KEY}&language=en-US`);
 };
 
-export const getMoviesByPerson = async (person_id: number): Promise<Data> => {
+export const getMoviesByPerson = async (person_id: number): Promise<Movies> => {
   return get(
     `/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&with_people=${person_id}`
   );
 };
 
-export const getRelatedMovies = async (movie_id: number): Promise<Data> => {
+export const getRelatedMovies = async (movie_id: number): Promise<Movies> => {
   return get(
     `/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`
   );
@@ -63,7 +63,7 @@ export const getRelatedMovies = async (movie_id: number): Promise<Data> => {
 export const getMoviesBySearch = async ({
   query,
   page,
-}: InitialType): Promise<Data> => {
+}: InitialType): Promise<Movies> => {
   return query
     ? get(
         `/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
@@ -73,7 +73,7 @@ export const getMoviesBySearch = async ({
 export const getPersonsBySearch = async ({
   query,
   page,
-}: InitialType): Promise<Cast> => {
+}: InitialType): Promise<People> => {
   return query
     ? get(
         `/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`
@@ -83,7 +83,7 @@ export const getPersonsBySearch = async ({
 
 export const getTrendingMovies = async (
   time_window: ITrendingType
-): Promise<Data> => {
+): Promise<Movies> => {
   return get(
     `/trending/movie/${time_window}?api_key=${API_KEY}&include_adult=false`
   );

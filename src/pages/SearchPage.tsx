@@ -3,6 +3,10 @@ import { useQuery } from "react-query";
 import { useUrlSearchParams, InitialType } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
 import { getMoviesBySearch, getPersonsBySearch } from "../services";
+import styles from "../css/Search.module.scss";
+import { FadeLoader } from "react-spinners";
+import home from "../css/Home.module.scss";
+import ResultsList from "../components/lists/ResultsList";
 
 const SearchPage = () => {
   const types = {
@@ -43,26 +47,48 @@ const SearchPage = () => {
       keepPreviousData: true,
     }
   );
+  const isLoading = personsLoading || moviesLoading;
+  const isError = personsIsError || moivesIsError;
+
+  useEffect(() => {
+    setSearchParams({ ...searchParams, query, page });
+  }, [query, page]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!searchRef?.current?.value) {
       return;
     }
+    setQuery(searchRef.current.value);
   };
-
-  console.log({ movies, persons });
-  useEffect(() => {
-    setSearchParams({ ...searchParams, query, page });
-  }, [query, page]);
-
+  if (isLoading) {
+    return (
+      <div className={home.spinner}>
+        <FadeLoader />
+      </div>
+    );
+  }
+  if (isError) {
+    if (personsError instanceof Error || moviesError instanceof Error) {
+      return (
+        <div className={home.error}>
+          <h2 className={home.errorText}>
+            Something went wrong. Please reload the page.
+          </h2>
+        </div>
+      );
+    }
+  }
   return (
-    <>
+    <div className={`${styles.searchPageContainer} wContainer`}>
       <SearchForm
         initialValue={query}
         handleSubmit={handleSubmit}
         searchRef={searchRef}
       />
-    </>
+      <div className={styles.contentWrapper}>
+        <ResultsList persons={persons} movies={movies} />
+      </div>
+    </div>
   );
 };
 

@@ -30,11 +30,18 @@ export interface Movie {
   credits: Credits;
 }
 
-export interface Data {
+export interface Movies {
   page: number;
   total_results: number;
   total_pages: number;
   results: Movie[];
+}
+
+export interface People {
+  page: number;
+  total_results: number;
+  total_pages: number;
+  results: Cast[];
 }
 
 export interface Genre {

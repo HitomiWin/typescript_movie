@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { getPerson } from "../services";
 import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
-import PersonDetails from "../components/PersonDetails";
+import PersonDetail from "../components/PersonDetails";
 import MoviesByPerson from "../components/MoviesByPerson";
 
 const PersonDetailsPage = () => {
@@ -33,7 +33,7 @@ const PersonDetailsPage = () => {
   }
   return (
     <>
-      <section>{data ? <PersonDetails person={data} /> : null}</section>
+      <section>{data ? <PersonDetail person={data} /> : null}</section>
       <section>{data ? <MoviesByPerson person_id={data.id} /> : null}</section>
     </>
   );

@@ -1,10 +1,10 @@
 import MovieCard from "../cards/MovieCard";
 import { FC } from "react";
-import { Data } from "../../shared/type";
+import { Movies } from "../../shared/type";
 import styles from "../../css/CardList.module.scss";
 
 interface Props {
-  data: Data;
+  data: Movies;
 }
 const MovieCardList: FC<Props> = ({ data }) => {
   return (
