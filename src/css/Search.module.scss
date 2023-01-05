@@ -8,16 +8,35 @@
 }
 
 .resultsListContainer {
-  width: 100%;
   border: 1px solid yellow;
   border-radius: var(--v-imageBorderRadius);
+  padding: 20px;
+  & h3 {
+    font-size: clamp(16px, 2.2vw, 20px);
+  }
   & .settingsPanel {
-    width: 300px;
+    width: 200px;
     box-sizing: border-box;
     padding: 8px 0;
-    list-style-type: none;
-    & > li {
-      color: yellow;
+    & .formControl {
+      padding: 0.5em 0;
+      color: yellowgreen;
+      font-weight: bold;
+      line-height: 1.1;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      font-size: clamp(16px, 2vw, 20px);
+      &.disabled {
+        color: gray;
+      }
+      & .totalNumber {
+        color: yellow;
+        font: 14px Arial, sans-serif;
+        &.disabled {
+          color: gray;
+        }
+      }
     }
   }
 }

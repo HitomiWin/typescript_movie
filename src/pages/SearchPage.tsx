@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
-import { useUrlSearchParams, InitialType } from "use-url-search-params";
+import { useUrlSearchParams } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
 import { getMoviesBySearch, getPersonsBySearch } from "../services";
 import styles from "../css/Search.module.scss";
 import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
+import { Movies, People } from "../shared/type";
 
 const SearchPage = () => {
   const types = {
@@ -47,12 +48,31 @@ const SearchPage = () => {
       keepPreviousData: true,
     }
   );
+  const [checkedValue, setCheckedValue] = useState<People | Movies | undefined>(
+    movies
+  );
   const isLoading = personsLoading || moviesLoading;
   const isError = personsIsError || moivesIsError;
 
   useEffect(() => {
     setSearchParams({ ...searchParams, query, page });
-  }, [query, page]);
+  }, [query, page, setSearchParams, searchParams]);
+
+  useLayoutEffect(() => {
+    if (movies?.total_results && movies.total_results > 0) {
+      setCheckedValue(movies);
+      return;
+    }
+    if (persons?.total_results && persons.total_results > 0) {
+      setCheckedValue(persons);
+      return;
+    }
+    setCheckedValue(undefined);
+  }, [movies, persons]);
+
+  const onChangeAttribute = (value: People | Movies | undefined) => {
+    setCheckedValue(value);
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!searchRef?.current?.value) {
@@ -60,6 +80,7 @@ const SearchPage = () => {
     }
     setQuery(searchRef.current.value);
   };
+
   if (isLoading) {
     return (
       <div className={home.spinner}>
@@ -78,6 +99,7 @@ const SearchPage = () => {
       );
     }
   }
+
   return (
     <div className={`${styles.searchPageContainer} wContainer`}>
       <SearchForm
@@ -86,7 +108,12 @@ const SearchPage = () => {
         searchRef={searchRef}
       />
       <div className={styles.contentWrapper}>
-        <ResultsList persons={persons} movies={movies} />
+        <ResultsList
+          persons={persons}
+          movies={movies}
+          checkedValue={checkedValue}
+          onChangeAttribute={onChangeAttribute}
+        />
       </div>
     </div>
   );
