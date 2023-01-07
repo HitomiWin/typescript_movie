@@ -8,6 +8,7 @@ import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
 import { Movies, People } from "../shared/type";
+import SearchList from "../components/lists/SearchList";
 
 const SearchPage = () => {
   const types = {
@@ -40,7 +41,7 @@ const SearchPage = () => {
     isLoading: personsLoading,
     isError: personsIsError,
     error: personsError,
-    isPreviousData: isPreviousPersonssData,
+    isPreviousData: isPreviousPersonsData,
   } = useQuery(
     ["person-search", searchParams],
     () => getPersonsBySearch(searchParams),
@@ -99,7 +100,6 @@ const SearchPage = () => {
       );
     }
   }
-
   return (
     <div className={`${styles.searchPageContainer} wContainer`}>
       <SearchForm
@@ -113,6 +113,17 @@ const SearchPage = () => {
           movies={movies}
           checkedValue={checkedValue}
           onChangeAttribute={onChangeAttribute}
+        />
+
+        <SearchList
+          persons={persons}
+          movies={movies}
+          checkedValue={checkedValue}
+          isPreviousMoviesData={isPreviousMoviesData}
+          isPreviousPersonsData={isPreviousPersonsData}
+          page={page}
+          setPage={setPage}
+          paramsPage={searchParams.page as number}
         />
       </div>
     </div>

@@ -1,0 +1,14 @@
+.searchListContainer {
+  display: flex;
+  flex-direction: column;
+}
+.searchListWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+}
+
+@media screen and (min-width: 768px) {
+  .searchListWrapper {
+    grid-template-columns: repeat(6, 16.6%);
+  }
+}

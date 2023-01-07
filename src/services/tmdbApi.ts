@@ -76,7 +76,7 @@ export const getPersonsBySearch = async ({
 }: InitialType): Promise<People> => {
   return query
     ? get(
-        `/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`
+        `/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}}&include_adult=false`
       )
     : null;
 };

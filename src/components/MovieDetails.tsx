@@ -7,7 +7,7 @@ interface Props {
 }
 const MovieDetails: FC<Props> = ({ movie }) => {
   const posterUrl = movie.poster_path
-    ? `https://image.tmdb.org/t/p/w400${movie.poster_path}`
+    ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
     : null;
   const backdropUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w400${movie.backdrop_path}`

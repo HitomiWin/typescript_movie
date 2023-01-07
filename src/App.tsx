@@ -11,11 +11,9 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movie/:movie_id" element={<MovieDetailsPage />}></Route>
-        <Route
-          path="/person/:person_id"
-          element={<PersonDetailsPage />}></Route>
-        <Route path="/search" element={<SearchPage />}></Route>
+        <Route path="/movie/:movie_id" element={<MovieDetailsPage />} />
+        <Route path="/person/:person_id" element={<PersonDetailsPage />} />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
     </div>
   );

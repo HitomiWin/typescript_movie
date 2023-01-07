@@ -2,16 +2,21 @@
   padding: var(--v-space) 0;
   overflow-x: scroll;
   overflow-y: hidden;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   justify-content: flex-start;
   align-content: flex-start;
   gap: 25px;
+  & .card {
+    width: 200px;
+  }
 }
 
 .card {
   display: block;
-  margin: 1em 0 3em 1em;
+  margin: 1em;
   transition: transform 0.5s, box-shadow 1s;
+
   &:hover {
     transform: scale(1.02) perspective(0px);
     box-shadow: 0 10px 10px greenyellow;
@@ -20,6 +25,7 @@
     border-radius: 5px;
     aspect-ratio: 2/3;
     cursor: pointer;
+    width: 100%;
   }
   & h3 {
     /* 16 / 768 (ipad) *100 = 2vw*/
