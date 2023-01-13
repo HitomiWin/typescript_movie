@@ -9,6 +9,10 @@ import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
 import { Movies, People } from "../shared/type";
 import SearchList from "../components/lists/SearchList";
+import { Route, Routes } from "react-router-dom";
+import SearchMoviesList from "../components/lists/SearchMoviesList";
+import SearchPersonsList from "../components/lists/SearchPersonsList";
+import NoMatch from "./NoMatch";
 
 const SearchPage = () => {
   const types = {
@@ -113,18 +117,28 @@ const SearchPage = () => {
           movies={movies}
           checkedValue={checkedValue}
           onChangeAttribute={onChangeAttribute}
+          query={query}
         />
-
-        <SearchList
-          persons={persons}
-          movies={movies}
-          checkedValue={checkedValue}
-          isPreviousMoviesData={isPreviousMoviesData}
-          isPreviousPersonsData={isPreviousPersonsData}
-          page={page}
-          setPage={setPage}
-          paramsPage={searchParams.page as number}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <SearchList
+                persons={persons}
+                movies={movies}
+                checkedValue={checkedValue}
+                isPreviousMoviesData={isPreviousMoviesData}
+                isPreviousPersonsData={isPreviousPersonsData}
+                page={page}
+                setPage={setPage}
+                paramsPage={searchParams.page as number}
+              />
+            }
+          />
+          <Route path="movies" element={<SearchMoviesList />} />
+          <Route path="persons" element={<SearchPersonsList />} />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
       </div>
     </div>
   );

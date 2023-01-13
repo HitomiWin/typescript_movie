@@ -60,13 +60,10 @@ u {
   margin: auto;
 }
 
-input[type="radio"] {
-  /* Add if not using autoprefixer */
+/* input[type="radio"] {
   -webkit-appearance: none;
   appearance: none;
-  /* For iOS < 15 to remove gradient background */
   background-color: #f5f5cc;
-  /* Not removed via appearance */
   margin: 0;
   font: inherit;
   color: currentColor;
@@ -77,9 +74,9 @@ input[type="radio"] {
   transform: translateY(-0.075em);
   display: grid;
   place-content: center;
-}
+} */
 
-input[type="radio"]::before {
+/* input[type="radio"]::before {
   content: "";
   width: 0.65em;
   height: 0.65em;
@@ -88,7 +85,6 @@ input[type="radio"]::before {
   transition: 120ms transform ease-in-out;
   box-shadow: inset 1em 1em var(--form-control-color);
 
-  /* Windows High Contrast Mode */
   background-color: CanvasText;
 
   transform-origin: bottom left;
@@ -102,8 +98,9 @@ input[type="radio"]:focus {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
+  background-color: yellowgreen;
 }
 
 input[type="radio"]:disabled {
   display: none;
-}
+} */
