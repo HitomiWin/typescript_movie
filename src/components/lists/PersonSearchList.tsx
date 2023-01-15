@@ -1,7 +1,8 @@
-import { FC, useState, Dispatch } from "react";
+import { FC, useState, Dispatch, useEffect } from "react";
 import { People } from "../../shared/type";
 import styles from "../../css/SearchList.module.scss";
 import PersonCard from "../cards/PersonCard";
+import PaginationButtons from "../buttons/PaginationButtons";
 
 interface Props {
   persons: People;
@@ -19,6 +20,9 @@ const PersonSearchList: FC<Props> = ({
   paramsPage,
 }) => {
   const [personsPage, setPersonsPage] = useState(1);
+  useEffect(() => {
+    setPage(personsPage);
+  }, [personsPage]);
   return (
     <div className={styles.searchListContainer}>
       <div className={styles.searchListWrapper}>
@@ -26,6 +30,13 @@ const PersonSearchList: FC<Props> = ({
           <PersonCard key={person.id} person={person} />
         ))}
       </div>
+      <PaginationButtons
+        page={personsPage}
+        setPage={setPersonsPage}
+        paramsPage={paramsPage}
+        totalPages={persons.total_pages}
+        isPreviousData={isPreviousPersonsData}
+      />
     </div>
   );
 };

@@ -1,7 +1,8 @@
-import { FC, useState, Dispatch } from "react";
+import { FC, useState, Dispatch, useEffect } from "react";
 import { Movies } from "../../shared/type";
 import MovieCard from "../cards/MovieCard";
 import styles from "../../css/SearchList.module.scss";
+import PaginationButtons from "../buttons/PaginationButtons";
 
 interface Props {
   movies: Movies;
@@ -18,7 +19,11 @@ const MovieSearchList: FC<Props> = ({
   setPage,
   paramsPage,
 }) => {
-  const [moviePage, setMoviePage] = useState(1);
+  const [moviePage, setMoviePage] = useState(page);
+  useEffect(() => {
+    setPage(moviePage);
+  }, [moviePage]);
+
   return (
     <div className={styles.searchListContainer}>
       <div className={styles.searchListWrapper}>
@@ -26,6 +31,13 @@ const MovieSearchList: FC<Props> = ({
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
+      <PaginationButtons
+        page={moviePage}
+        setPage={setMoviePage}
+        paramsPage={paramsPage}
+        totalPages={movies.total_pages}
+        isPreviousData={isPreviousMoviesData}
+      />
     </div>
   );
 };

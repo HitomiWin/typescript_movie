@@ -7,12 +7,6 @@
   display: grid;
   grid-template-columns: repeat(3, 33.3%);
 }
-
-@media screen and (min-width: 480px) {
-  .searchListWrapper {
-    grid-template-columns: repeat(4, 25%);
-  }
-}
 @media screen and (min-width: 768px) {
   .searchListWrapper {
     grid-template-columns: repeat(5, 20%);
