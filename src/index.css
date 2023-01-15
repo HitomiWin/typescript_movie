@@ -61,12 +61,9 @@ u {
 }
 
 input[type="radio"] {
-  /* Add if not using autoprefixer */
   -webkit-appearance: none;
   appearance: none;
-  /* For iOS < 15 to remove gradient background */
   background-color: #f5f5cc;
-  /* Not removed via appearance */
   margin: 0;
   font: inherit;
   color: currentColor;
@@ -88,7 +85,6 @@ input[type="radio"]::before {
   transition: 120ms transform ease-in-out;
   box-shadow: inset 1em 1em var(--form-control-color);
 
-  /* Windows High Contrast Mode */
   background-color: CanvasText;
 
   transform-origin: bottom left;
@@ -102,6 +98,7 @@ input[type="radio"]:focus {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
+  background-color: yellowgreen;
 }
 
 input[type="radio"]:disabled {

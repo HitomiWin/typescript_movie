@@ -9,6 +9,8 @@ import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
 import { Movies, People } from "../shared/type";
 import SearchList from "../components/lists/SearchList";
+import MovieSearchList from "../components/lists/MovieSearchList";
+import PersonSearchList from "../components/lists/PersonSearchList";
 
 const SearchPage = () => {
   const types = {
@@ -100,6 +102,9 @@ const SearchPage = () => {
       );
     }
   }
+  const isMovies = checkedValue === movies;
+  const isPersons = checkedValue === persons;
+
   return (
     <div className={`${styles.searchPageContainer} wContainer`}>
       <SearchForm
@@ -114,17 +119,25 @@ const SearchPage = () => {
           checkedValue={checkedValue}
           onChangeAttribute={onChangeAttribute}
         />
-
-        <SearchList
-          persons={persons}
-          movies={movies}
-          checkedValue={checkedValue}
-          isPreviousMoviesData={isPreviousMoviesData}
-          isPreviousPersonsData={isPreviousPersonsData}
-          page={page}
-          setPage={setPage}
-          paramsPage={searchParams.page as number}
-        />
+        {isMovies && movies && (
+          <MovieSearchList
+            movies={movies}
+            isPreviousMoviesData={isPreviousMoviesData}
+            page={page}
+            setPage={setPage}
+            paramsPage={searchParams.page as number}
+          />
+        )}
+        {isPersons && persons && (
+          <PersonSearchList
+            persons={persons}
+            isPreviousPersonsData={isPreviousPersonsData}
+            page={page}
+            setPage={setPage}
+            paramsPage={searchParams.page as number}
+          />
+        )}
+        {!checkedValue && <p> No result match your search. Try again</p>}
       </div>
     </div>
   );
