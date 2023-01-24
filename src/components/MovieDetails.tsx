@@ -8,7 +8,7 @@ interface Props {
 const MovieDetails: FC<Props> = ({ movie }) => {
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
-    : null;
+    : "./images/no-image-icon-23485.png";
   const backdropUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w400${movie.backdrop_path}`
     : null;
@@ -34,11 +34,7 @@ const MovieDetails: FC<Props> = ({ movie }) => {
           <img className={`${styles.backgroundImg}`} src={backdropUrl} alt="" />
         )}
         <div className={`${styles.imgTextContainer}  wContainer`}>
-          <img
-            className={styles.img}
-            src={posterUrl ?? "../../images/no-image-icon-23485.png"}
-            alt=""
-          />
+          <img className={styles.img} src={posterUrl} alt="" />
           <div className={styles.text}>
             <div className={styles.textContents}>
               <h2 className={styles.head}>{movie.title}</h2>

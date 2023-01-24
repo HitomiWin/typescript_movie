@@ -10,6 +10,7 @@ interface Props {
   defaultPage: number;
   type: string;
 }
+
 const SearchList: FC<Props> = ({ data, type, defaultPage }) => {
   console.log({ type, data });
   if (!data || !type) {

@@ -10,7 +10,7 @@ const PersonDetail: FC<Props> = ({ person }) => {
   const [isExpand, setIsExpand] = useState(false);
   const posterUrl = person.profile_path
     ? `https://image.tmdb.org/t/p/w300${person.profile_path}`
-    : null;
+    : "./images/no-image-icon-23485.png";
   const personBiography = person.biography;
   const bipgraphytexts = personBiography.split("\n\n");
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
@@ -30,10 +30,7 @@ const PersonDetail: FC<Props> = ({ person }) => {
       <div className={`${styles.imgText} wContainer`}>
         <div className={`${styles.imgTextContainer}`}>
           <div className={styles.img}>
-            <img
-              src={posterUrl ?? "../../images/no-image-icon-23485.png"}
-              alt=""
-            />
+            <img src={posterUrl} alt="" />
           </div>
           <div className={`${styles.text} `}>
             <div

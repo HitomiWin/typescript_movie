@@ -53,8 +53,9 @@ const SearchPage = () => {
     }
   );
   const [checkedValue, setCheckedValue] = useState<People | Movies | undefined>(
-    undefined
+    movies
   );
+
   const isLoading = personsLoading || moviesLoading;
   const isError = personsIsError || moivesIsError;
   const navigate = useNavigate();
@@ -103,6 +104,7 @@ const SearchPage = () => {
       );
     }
   }
+
   return (
     <div className={`${styles.searchPageContainer} wContainer`}>
       <SearchForm
@@ -118,17 +120,23 @@ const SearchPage = () => {
           onChangeAttribute={onChangeAttribute}
           query={query}
         />
-        <DefaultSearchList
-          persons={persons}
-          movies={movies}
-          checkedValue={checkedValue}
-          // isPreviousMoviesData={isPreviousMoviesData}
-          // isPreviousPersonsData={isPreviousPersonsData}
-          // page={page}
-          // setPage={setPage}
-          paramsPage={searchParams.page as number}
-        />
+
         <Routes>
+          <Route
+            path="/"
+            element={
+              <DefaultSearchList
+                persons={persons}
+                movies={movies}
+                checkedValue={checkedValue}
+                // isPreviousMoviesData={isPreviousMoviesData}
+                // isPreviousPersonsData={isPreviousPersonsData}
+                // page={page}
+                // setPage={setPage}
+                paramsPage={searchParams.page as number}
+              />
+            }
+          />
           <Route
             path="movies"
             element={

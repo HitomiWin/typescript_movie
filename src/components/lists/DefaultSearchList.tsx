@@ -16,17 +16,24 @@ const DefaultSearchList: FC<Props> = ({
   checkedValue,
   paramsPage,
 }) => {
+  console.log(checkedValue);
   if (movies && checkedValue === movies) {
     return <SearchList type={"movies"} data={checkedValue} defaultPage={1} />;
   } else if (persons && checkedValue === persons) {
     return <SearchList type={"persons"} data={checkedValue} defaultPage={1} />;
+  } else {
+    return (
+      <>
+        <p> No result match your search. Try again</p>
+      </>
+    );
   }
 
-  return (
-    <>
-      <p> No result match your search. Try again</p>
-    </>
-  );
+  // return (
+  //   <>
+  //     <p> No result match your search. Try again</p>
+  //   </>
+  // );
 };
 
 export default DefaultSearchList;
