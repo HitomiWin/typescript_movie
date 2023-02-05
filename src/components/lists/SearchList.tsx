@@ -3,7 +3,7 @@ import { Movies, People } from "../../shared/type";
 import MovieCard from "../cards/MovieCard";
 import PersonCard from "../cards/PersonCard";
 import styles from "../../css/SearchList.module.scss";
-import PaginationButtons from "../../components/buttons/PagenationButtons";
+import PaginationButtons from "../buttons/PaginationButtons";
 
 interface Props {
   persons: People | undefined;

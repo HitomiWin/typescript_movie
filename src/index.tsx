@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import NavBarContextProvider from "./contexts/NavBarContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
+        <NavBarContextProvider>
+          <App />
+        </NavBarContextProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
