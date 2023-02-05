@@ -9,8 +9,9 @@ import styles from "./css/Navbar.module.scss";
 import { useNavbarContext } from "./contexts/NavBarContext";
 
 function App() {
+  const { showMenu } = useNavbarContext();
   return (
-    <div className={`${styles.app}  App`}>
+    <div className={` ${showMenu && styles.open} App`}>
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -8,6 +8,7 @@
   align-items: center;
   height: 100%;
 }
+
 .logo {
   & > span {
     color: yellow;
@@ -29,7 +30,30 @@
   &:hover {
     color: greenyellow;
   }
+  &.showMenu {
+    z-index: 110;
+    color: yellow;
+    & .faBars {
+      display: none;
+    }
+    & .faTimes {
+      display: revert;
+    }
+  }
+  & .faBars {
+    display: revert;
+  }
+
+  & .faTimes {
+    display: none;
+  }
 }
+
+// .navbtn .showMenu {
+//   z-index: 110;
+//   color: yellow;
+// }
+
 .searchContainer {
   width: 400px;
 
@@ -51,12 +75,11 @@
     transform: translate(-100%, 0);
   }
 
-  .open {
-    & body {
-      position: fixed;
-      overflow: hidden;
-    }
-  }
+  // .app .open {
+  //   position: fixed;
+  //   overflow: hidden;
+  // }
+
   .nav ul {
     display: flex;
     flex-direction: column;
