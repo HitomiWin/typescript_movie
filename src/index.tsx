@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import NavBarContextProvider from "./contexts/NavBarContext";
+import GenresContextProvider from "./contexts/GenreContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,9 +24,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <NavBarContextProvider>
-          <App />
-        </NavBarContextProvider>
+        <GenresContextProvider>
+          <NavBarContextProvider>
+            <App />
+          </NavBarContextProvider>
+        </GenresContextProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

@@ -23,6 +23,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px 0;
+  gap: 0.5rem 0;
   .btn {
     width: 100px;
     padding: clamp(2px, 5.2vw, 5px);
@@ -30,7 +31,7 @@
     border-radius: 4px;
     border: 1px solid yellow;
     font-size: clamp(12px, 5.2vw, 16px);
-    text-shadow: o o 6px #00000052;
+    text-shadow: 6px #00000052;
     color: yellow;
   }
   .active {
@@ -62,5 +63,6 @@
 @media screen and (min-width: 768px) {
   .btns {
     flex-direction: row;
+    gap: 0 1rem;
   }
 }

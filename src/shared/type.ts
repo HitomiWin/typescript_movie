@@ -88,3 +88,12 @@ export interface SearchQueryArg {
   query: string;
   page: number;
 }
+
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface Genres {
+  genres: Genre[];
+}

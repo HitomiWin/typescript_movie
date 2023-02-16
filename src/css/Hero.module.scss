@@ -44,6 +44,9 @@
       align-items: center;
       border-color: yellow;
       color: yellow;
+      &:focus {
+        background-color: yellowgreen !important;
+      }
     }
 
     & .searchBtn {

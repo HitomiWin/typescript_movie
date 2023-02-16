@@ -11,7 +11,7 @@ const PersonCard: FC<Props> = ({ person }) => {
   const navigate = useNavigate();
   const posterUrl = person.profile_path
     ? `https://image.tmdb.org/t/p/w200${person.profile_path}`
-    : "./images/no-image-icon-23485.png";
+    : null;
 
   const handleOnClick = () => {
     navigate(`/person/${person.id}`);
@@ -21,9 +21,15 @@ const PersonCard: FC<Props> = ({ person }) => {
     <>
       <article className={styles.card} onClick={handleOnClick}>
         <figure>
-          <img src={posterUrl} alt="" width="200" />
+          {posterUrl ? (
+            <img src={posterUrl} alt="" width="200" />
+          ) : (
+            <div className={styles.noImageContainer}>
+              <p> No Image</p>
+            </div>
+          )}
         </figure>
-        <div className={styles.cardTitle}>
+        <div className={styles.titleContainer}>
           <h3>{person.name}</h3>
         </div>
       </article>

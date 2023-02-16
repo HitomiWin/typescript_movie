@@ -13,7 +13,7 @@ const MovieCard: FC<Props> = ({ movie }) => {
   const navigate = useNavigate();
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-    : "../../images/no-image-icon-23485.png";
+    : null;
 
   const handleOnClick = () => {
     if (savedMovies.length > 10) {
@@ -32,9 +32,15 @@ const MovieCard: FC<Props> = ({ movie }) => {
     <>
       <article className={styles.card} onClick={handleOnClick}>
         <figure>
-          <img src={posterUrl} alt="" width="200" />
+          {posterUrl ? (
+            <img src={posterUrl} alt="" width="200" />
+          ) : (
+            <div className={styles.noImageContainer}>
+              <p> No Image</p>
+            </div>
+          )}
         </figure>
-        <div className={styles.cardTitle}>
+        <div className={styles.titleContainer}>
           <h3>{movie.title}</h3>
           <p>{movie.release_date}</p>
         </div>

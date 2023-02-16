@@ -37,11 +37,13 @@ export const getMoviesByGenre = async (genreId: number, page = 1) => {
 };
 
 export const getMovieDetails = async (id: number): Promise<Movie> => {
-  return get(`/movie/${id}?api_key=${API_KEY}&append_to_response=credits`);
+  return get(
+    `/movie/${id}?api_key=${API_KEY}&append_to_response=credits&include_adult=false`
+  );
 };
 
 export const getMovie = async (id: number) => {
-  return get(`/movie/${id}?api_key=${API_KEY}`);
+  return get(`/movie/${id}?api_key=${API_KEY}&include_adult=false`);
 };
 
 export const getPerson = async (person_id: number): Promise<Cast> => {
@@ -66,7 +68,7 @@ export const getMoviesBySearch = async ({
 }: InitialType): Promise<Movies> => {
   return query
     ? get(
-        `/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
+        `/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false&sort_by=popularity.desc`
       )
     : null;
 };
@@ -76,7 +78,7 @@ export const getPersonsBySearch = async ({
 }: InitialType): Promise<People> => {
   return query
     ? get(
-        `/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}}&include_adult=false`
+        `/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}}&include_adult=false&sort_by=popularity.desc`
       )
     : null;
 };

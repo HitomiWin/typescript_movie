@@ -3,9 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useNavbarContext } from "../../contexts/NavBarContext";
+import { useGenresContext } from "../../contexts/GenreContext";
 
 const Navigation = () => {
   const { showMenu, setShowMenu } = useNavbarContext();
+  const { genreId } = useGenresContext();
   const handleNavButton = () => {
     setShowMenu(!showMenu);
   };
@@ -35,7 +37,9 @@ const Navigation = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/genre" onClick={() => handleNavButton()}>
+              <NavLink
+                to={`/genres/${genreId}`}
+                onClick={() => handleNavButton()}>
                 Genre
               </NavLink>
             </li>

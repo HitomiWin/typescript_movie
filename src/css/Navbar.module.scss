@@ -62,6 +62,16 @@
   }
 }
 
+@media (min-width: 767px) {
+  .navbtn {
+    display: none;
+  }
+  .nav ul {
+    display: flex;
+    gap: 40px;
+  }
+}
+
 @media (max-width: 767px) {
   .nav {
     position: fixed;
