@@ -5,7 +5,6 @@ import React, {
   useState,
   useEffect,
   ReactNode,
-  Dispatch,
 } from "react";
 import { useQuery } from "react-query";
 import { getGenre } from "../services/tmdbApi";
@@ -16,7 +15,7 @@ interface GenreContextProps {
   getGenreId: (id: Genre["id"] | null) => void;
   genreName: Genre["name"];
   getGenreName: (name: Genre["name"]) => void;
-  genres: Genres[];
+  genres: Genres | undefined;
   isLoading: boolean;
   isError: boolean;
   error: unknown;

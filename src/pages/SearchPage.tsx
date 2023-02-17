@@ -8,8 +8,7 @@ import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
 import { Movies, People } from "../shared/type";
-import SearchList from "../components/lists/SearchList";
-import MovieSearchList from "../components/lists/MovieSearchList";
+import MovieList from "../components/lists/MovieList";
 import PersonSearchList from "../components/lists/PersonSearchList";
 
 const SearchPage = () => {
@@ -120,7 +119,7 @@ const SearchPage = () => {
           onChangeAttribute={onChangeAttribute}
         />
         {isMovies && movies && (
-          <MovieSearchList
+          <MovieList
             movies={movies}
             isPreviousMoviesData={isPreviousMoviesData}
             page={page}

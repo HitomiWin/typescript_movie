@@ -6,6 +6,7 @@ import {
   Movie,
   Cast,
   People,
+  Genres,
 } from "../shared/type";
 import { InitialType } from "use-url-search-params";
 
@@ -26,11 +27,11 @@ export const getCategorizedMovies = async (
   );
 };
 
-export const getGenre = async () => {
+export const getGenre = async (): Promise<Genres> => {
   return get(`/genre/movie/list?api_key=${API_KEY}&region=us&language=en-US`);
 };
 
-export const getMoviesByGenre = async (genreId: number, page = 1) => {
+export const getMoviesByGenre = async (genreId = 1, page = 1) => {
   return get(
     `/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&include_adult=false&page=${page}&with_genres=${genreId}&language=en-US&region=us`
   );

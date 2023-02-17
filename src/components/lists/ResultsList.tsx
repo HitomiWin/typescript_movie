@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { People, Movies } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
-import { Value } from "sass";
 
 interface Props {
   persons: People | undefined;

@@ -12,7 +12,7 @@ interface Props {
   paramsPage: number | undefined;
 }
 
-const MovieSearchList: FC<Props> = ({
+const MovieList: FC<Props> = ({
   movies,
   isPreviousMoviesData,
   page,
@@ -42,4 +42,4 @@ const MovieSearchList: FC<Props> = ({
   );
 };
 
-export default MovieSearchList;
+export default MovieList;
