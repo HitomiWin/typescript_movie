@@ -11,7 +11,7 @@ import setting from "../css/Search.module.scss";
 const GenrePage = () => {
   const { genre_id } = useParams();
   const [params, setParams] = useUrlSearchParams({ page: 1 }, { page: Number });
-  const [page, setPage] = useState<number>((params.page = 1));
+  const [page, setPage] = useState<number>(1);
 
   const { data, isLoading, isError, error, isPreviousData } = useQuery(
     ["movies-genre", genre_id, params.page],
