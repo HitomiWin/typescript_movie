@@ -1,24 +1,29 @@
 import { FC } from "react";
-import { People, Movies } from "../../shared/type";
+import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
 
 interface Props {
   persons: People | undefined;
   movies: Movies | undefined;
-  checkedValue: People | Movies | undefined;
-  onChangeAttribute: (value: People | Movies | undefined) => void;
+  dataCategory: IDataCategory | null;
+  setDataCategory: React.Dispatch<React.SetStateAction<IDataCategory | null>>;
 }
 
 const ResultsList: FC<Props> = ({
   persons,
   movies,
-  checkedValue,
-  onChangeAttribute,
+  dataCategory,
+  setDataCategory,
 }) => {
   const options = [
-    { label: "Movies", name: "movies", value: movies },
-    { label: "People", name: "people", value: persons },
+    { label: "Movies", name: IDataCategory.movies, value: movies },
+    { label: "People", name: IDataCategory.people, value: persons },
   ];
+
+  const handleOnChange = (optionName: IDataCategory) => {
+    setDataCategory(optionName);
+  };
+
   return (
     <div className={styles.resultsListContainer}>
       <h3>Search Results</h3>
@@ -35,9 +40,10 @@ const ResultsList: FC<Props> = ({
                 type="radio"
                 className={styles.checkBox}
                 name={option.name}
-                checked={checkedValue === option.value}
-                onChange={() => onChangeAttribute(option.value)}
+                checked={option.name === dataCategory}
+                value={option.name}
                 disabled={disabled}
+                onChange={() => handleOnChange(option.name)}
               />
               {option.label}
               <span

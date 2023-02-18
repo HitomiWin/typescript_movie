@@ -7,7 +7,7 @@ import styles from "../css/Search.module.scss";
 import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
-import { Movies, People } from "../shared/type";
+import { IDataCategory } from "../shared/type";
 import MovieList from "../components/lists/MovieList";
 import PersonSearchList from "../components/lists/PersonSearchList";
 
@@ -20,10 +20,10 @@ const SearchPage = () => {
     { query: undefined, page: undefined },
     types
   );
-
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(searchParams.page as number);
   const [query, setQuery] = useState(searchParams.query?.toString());
   const searchRef = useRef<HTMLInputElement>(null);
+  const [dataCategory, setDataCategory] = useState<IDataCategory | null>(null);
   const {
     data: movies,
     isLoading: moviesLoading,
@@ -37,6 +37,7 @@ const SearchPage = () => {
       keepPreviousData: true,
     }
   );
+
   const {
     data: persons,
     isLoading: personsLoading,
@@ -50,37 +51,42 @@ const SearchPage = () => {
       keepPreviousData: true,
     }
   );
-  const [checkedValue, setCheckedValue] = useState<People | Movies | undefined>(
-    movies
-  );
+
   const isLoading = personsLoading || moviesLoading;
   const isError = personsIsError || moivesIsError;
-
+  console.log({ dataCategory, query });
   useEffect(() => {
     setSearchParams({ ...searchParams, query, page });
-  }, [query, page, setSearchParams, searchParams]);
+  }, [query, page, searchParams]);
 
   useLayoutEffect(() => {
-    if (movies?.total_results && movies.total_results > 0) {
-      setCheckedValue(movies);
+    if (
+      movies?.total_results &&
+      movies.total_results > 0 &&
+      dataCategory !== IDataCategory.movies
+    ) {
+      console.log("movie");
+      setDataCategory(IDataCategory.movies);
       return;
     }
-    if (persons?.total_results && persons.total_results > 0) {
-      setCheckedValue(persons);
+    if (
+      persons?.total_results &&
+      persons.total_results > 0 &&
+      dataCategory !== IDataCategory.people
+    ) {
+      console.log("people");
+      setDataCategory(IDataCategory.people);
       return;
     }
-    setCheckedValue(undefined);
+    console.log("null");
+    setDataCategory(null);
+    return;
   }, [movies, persons]);
 
-  const onChangeAttribute = (value: People | Movies | undefined) => {
-    setCheckedValue(value);
-  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!searchRef?.current?.value) {
-      return;
-    }
-    setQuery(searchRef.current.value);
+    setQuery(searchRef?.current?.value);
+    setPage(1);
   };
 
   if (isLoading) {
@@ -101,8 +107,6 @@ const SearchPage = () => {
       );
     }
   }
-  const isMovies = checkedValue === movies;
-  const isPersons = checkedValue === persons;
 
   return (
     <div className={`${styles.searchPageContainer} wContainer`}>
@@ -115,10 +119,10 @@ const SearchPage = () => {
         <ResultsList
           persons={persons}
           movies={movies}
-          checkedValue={checkedValue}
-          onChangeAttribute={onChangeAttribute}
+          dataCategory={dataCategory}
+          setDataCategory={setDataCategory}
         />
-        {isMovies && movies && (
+        {dataCategory === IDataCategory.movies && movies && (
           <MovieList
             movies={movies}
             isPreviousMoviesData={isPreviousMoviesData}
@@ -127,7 +131,7 @@ const SearchPage = () => {
             paramsPage={searchParams.page as number}
           />
         )}
-        {isPersons && persons && (
+        {dataCategory === IDataCategory.people && persons && (
           <PersonSearchList
             persons={persons}
             isPreviousPersonsData={isPreviousPersonsData}
@@ -136,7 +140,13 @@ const SearchPage = () => {
             paramsPage={searchParams.page as number}
           />
         )}
-        {!checkedValue && <p> No result match your search. Try again</p>}
+        {!dataCategory && (
+          <div className={home.error}>
+            <h2 className={home.errorText}>
+              No result match your search. Try again
+            </h2>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import PersonDetailsPage from "./pages/PersonDetailsPage";
 import Navigation from "./pages/pertials/Navigation";
+import { ReactQueryDevtools } from "react-query/devtools";
 import SearchPage from "./pages/SearchPage";
 import styles from "./css/Navbar.module.scss";
 import { useNavbarContext } from "./contexts/NavBarContext";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/genres/:genre_id" element={<GenrePage />} />
       </Routes>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </div>
   );
 }
