@@ -65,7 +65,7 @@ export const getRelatedMovies = async (movie_id: number): Promise<Movies> => {
 
 export const getMoviesBySearch = async ({
   query,
-  page,
+  page = 1,
 }: InitialType): Promise<Movies> => {
   return query
     ? get(
@@ -75,7 +75,7 @@ export const getMoviesBySearch = async ({
 };
 export const getPersonsBySearch = async ({
   query,
-  page,
+  page = 1,
 }: InitialType): Promise<People> => {
   return query
     ? get(
