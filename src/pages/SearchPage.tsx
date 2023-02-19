@@ -7,11 +7,14 @@ import styles from "../css/Search.module.scss";
 import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { IDataCategory } from "../shared/type";
 import MovieList from "../components/lists/MovieList";
 import PersonSearchList from "../components/lists/PersonSearchList";
+import NoMatch from "./NoMatch";
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   const types = {
     query: String,
     page: Number,
@@ -20,7 +23,7 @@ const SearchPage = () => {
     { query: undefined, page: undefined },
     types
   );
-  const [page, setPage] = useState(searchParams.page as number);
+  const [page, setPage] = useState(1);
   const [query, setQuery] = useState(searchParams.query?.toString());
   const searchRef = useRef<HTMLInputElement>(null);
   const [dataCategory, setDataCategory] = useState<IDataCategory | null>(null);
@@ -54,7 +57,7 @@ const SearchPage = () => {
 
   const isLoading = personsLoading || moviesLoading;
   const isError = personsIsError || moivesIsError;
-  console.log({ dataCategory, query });
+
   useEffect(() => {
     setSearchParams({ ...searchParams, query, page });
   }, [query, page, searchParams]);
@@ -65,7 +68,6 @@ const SearchPage = () => {
       movies.total_results > 0 &&
       dataCategory !== IDataCategory.movies
     ) {
-      console.log("movie");
       setDataCategory(IDataCategory.movies);
       return;
     }
@@ -74,19 +76,15 @@ const SearchPage = () => {
       persons.total_results > 0 &&
       dataCategory !== IDataCategory.people
     ) {
-      console.log("people");
       setDataCategory(IDataCategory.people);
       return;
     }
-    console.log("null");
-    setDataCategory(null);
-    return;
   }, [movies, persons]);
+  console.log(dataCategory);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setQuery(searchRef?.current?.value);
-    setPage(1);
   };
 
   if (isLoading) {
@@ -119,34 +117,64 @@ const SearchPage = () => {
         <ResultsList
           persons={persons}
           movies={movies}
-          dataCategory={dataCategory}
-          setDataCategory={setDataCategory}
+          query={query}
+          page={page}
         />
-        {dataCategory === IDataCategory.movies && movies && (
-          <MovieList
-            movies={movies}
-            isPreviousMoviesData={isPreviousMoviesData}
-            page={page}
-            setPage={setPage}
-            paramsPage={searchParams.page as number}
+        <Routes>
+          <Route
+            index
+            element={
+              dataCategory === IDataCategory.movies && movies ? (
+                <MovieList
+                  movies={movies}
+                  isPreviousMoviesData={isPreviousMoviesData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              ) : dataCategory === IDataCategory.people && persons ? (
+                <PersonSearchList
+                  persons={persons}
+                  isPreviousPersonsData={isPreviousPersonsData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              ) : (
+                <NoMatch />
+              )
+            }
           />
-        )}
-        {dataCategory === IDataCategory.people && persons && (
-          <PersonSearchList
-            persons={persons}
-            isPreviousPersonsData={isPreviousPersonsData}
-            page={page}
-            setPage={setPage}
-            paramsPage={searchParams.page as number}
+          <Route
+            path="movies"
+            element={
+              movies && (
+                <MovieList
+                  movies={movies}
+                  isPreviousMoviesData={isPreviousMoviesData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              )
+            }
           />
-        )}
-        {!dataCategory && (
-          <div className={home.error}>
-            <h2 className={home.errorText}>
-              No result match your search. Try again
-            </h2>
-          </div>
-        )}
+          <Route
+            path="people"
+            element={
+              persons && (
+                <PersonSearchList
+                  persons={persons}
+                  isPreviousPersonsData={isPreviousPersonsData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              )
+            }
+          />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
       </div>
     </div>
   );
