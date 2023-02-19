@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
@@ -61,26 +61,27 @@ const SearchPage = () => {
   useEffect(() => {
     setSearchParams({ ...searchParams, query, page });
   }, [query, page, searchParams]);
+  const isMovies = movies && movies.total_results > 0;
+  const isPeople = persons && persons.total_results > 0;
 
-  useLayoutEffect(() => {
-    if (
-      movies?.total_results &&
-      movies.total_results > 0 &&
-      dataCategory !== IDataCategory.movies
-    ) {
-      setDataCategory(IDataCategory.movies);
-      return;
-    }
-    if (
-      persons?.total_results &&
-      persons.total_results > 0 &&
-      dataCategory !== IDataCategory.people
-    ) {
-      setDataCategory(IDataCategory.people);
-      return;
-    }
-  }, [movies, persons]);
-  console.log(dataCategory);
+  // useLayoutEffect(() => {
+  //   if (
+  //     movies?.total_results &&
+  //     movies.total_results > 0 &&
+  //     dataCategory !== IDataCategory.movies
+  //   ) {
+  //     setDataCategory(IDataCategory.movies);
+  //     return;
+  //   }
+  //   if (
+  //     persons?.total_results &&
+  //     persons.total_results > 0 &&
+  //     dataCategory !== IDataCategory.people
+  //   ) {
+  //     setDataCategory(IDataCategory.people);
+  //     return;
+  //   }
+  // }, [movies, persons]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -122,9 +123,9 @@ const SearchPage = () => {
         />
         <Routes>
           <Route
-            index
+            path="/"
             element={
-              dataCategory === IDataCategory.movies && movies ? (
+              isMovies ? (
                 <MovieList
                   movies={movies}
                   isPreviousMoviesData={isPreviousMoviesData}
@@ -132,7 +133,7 @@ const SearchPage = () => {
                   setPage={setPage}
                   paramsPage={searchParams.page as number}
                 />
-              ) : dataCategory === IDataCategory.people && persons ? (
+              ) : isPeople ? (
                 <PersonSearchList
                   persons={persons}
                   isPreviousPersonsData={isPreviousPersonsData}
@@ -148,7 +149,7 @@ const SearchPage = () => {
           <Route
             path="movies"
             element={
-              movies && (
+              movies && movies.total_results > 0 ? (
                 <MovieList
                   movies={movies}
                   isPreviousMoviesData={isPreviousMoviesData}
@@ -156,13 +157,15 @@ const SearchPage = () => {
                   setPage={setPage}
                   paramsPage={searchParams.page as number}
                 />
+              ) : (
+                <NoMatch />
               )
             }
           />
           <Route
             path="people"
             element={
-              persons && (
+              persons && persons.total_results > 0 ? (
                 <PersonSearchList
                   persons={persons}
                   isPreviousPersonsData={isPreviousPersonsData}
@@ -170,6 +173,8 @@ const SearchPage = () => {
                   setPage={setPage}
                   paramsPage={searchParams.page as number}
                 />
+              ) : (
+                <NoMatch />
               )
             }
           />
