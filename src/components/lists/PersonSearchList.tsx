@@ -22,7 +22,11 @@ const PersonSearchList: FC<Props> = ({
   const [personsPage, setPersonsPage] = useState(1);
   useEffect(() => {
     setPage(personsPage);
+    return () => {
+      setPage(1);
+    };
   }, [personsPage]);
+
   return (
     <div className={styles.searchListContainer}>
       <div className={styles.searchListWrapper}>

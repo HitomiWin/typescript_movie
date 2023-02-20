@@ -15,6 +15,11 @@ export enum ICategoryTitle {
   top_rated = "Top 20",
 }
 
+export enum IDataCategory {
+  people = "people",
+  movies = "movies",
+}
+
 export interface Movie {
   poster_path: string | null;
   backdrop_path: string | null;

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
@@ -7,23 +7,26 @@ import styles from "../css/Search.module.scss";
 import { FadeLoader } from "react-spinners";
 import home from "../css/Home.module.scss";
 import ResultsList from "../components/lists/ResultsList";
-import { Movies, People } from "../shared/type";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { IDataCategory } from "../shared/type";
 import MovieList from "../components/lists/MovieList";
 import PersonSearchList from "../components/lists/PersonSearchList";
+import NoMatch from "./NoMatch";
 
 const SearchPage = () => {
   const types = {
     query: String,
     page: Number,
   };
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useUrlSearchParams(
     { query: undefined, page: undefined },
     types
   );
-
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState(searchParams.query?.toString());
   const searchRef = useRef<HTMLInputElement>(null);
+  const [dataCategory, setDataCategory] = useState<IDataCategory | null>(null);
   const {
     data: movies,
     isLoading: moviesLoading,
@@ -37,6 +40,7 @@ const SearchPage = () => {
       keepPreviousData: true,
     }
   );
+
   const {
     data: persons,
     isLoading: personsLoading,
@@ -50,37 +54,34 @@ const SearchPage = () => {
       keepPreviousData: true,
     }
   );
-  const [checkedValue, setCheckedValue] = useState<People | Movies | undefined>(
-    movies
-  );
+
   const isLoading = personsLoading || moviesLoading;
   const isError = personsIsError || moivesIsError;
 
   useEffect(() => {
     setSearchParams({ ...searchParams, query, page });
-  }, [query, page, setSearchParams, searchParams]);
+  }, [query, page, searchParams]);
+  const isMovies = movies && movies.total_results > 0;
+  const isPeople = persons && persons.total_results > 0;
 
-  useLayoutEffect(() => {
-    if (movies?.total_results && movies.total_results > 0) {
-      setCheckedValue(movies);
+  useEffect(() => {
+    if (isMovies) {
+      setDataCategory(IDataCategory.movies);
+      navigate(`/search/movies?query=${query}&page=1`);
       return;
     }
-    if (persons?.total_results && persons.total_results > 0) {
-      setCheckedValue(persons);
+    if (isPeople) {
+      setDataCategory(IDataCategory.people);
+      navigate(`/search/people?query=${query}&page=1`);
       return;
     }
-    setCheckedValue(undefined);
-  }, [movies, persons]);
+    setPage(1);
+    setDataCategory(null);
+  }, [query]);
 
-  const onChangeAttribute = (value: People | Movies | undefined) => {
-    setCheckedValue(value);
-  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!searchRef?.current?.value) {
-      return;
-    }
-    setQuery(searchRef.current.value);
+    setQuery(searchRef?.current?.value);
   };
 
   if (isLoading) {
@@ -101,8 +102,6 @@ const SearchPage = () => {
       );
     }
   }
-  const isMovies = checkedValue === movies;
-  const isPersons = checkedValue === persons;
 
   return (
     <div className={`${styles.searchPageContainer} wContainer`}>
@@ -115,28 +114,69 @@ const SearchPage = () => {
         <ResultsList
           persons={persons}
           movies={movies}
-          checkedValue={checkedValue}
-          onChangeAttribute={onChangeAttribute}
+          query={query}
+          page={page}
+          dataCategory={dataCategory}
         />
-        {isMovies && movies && (
-          <MovieList
-            movies={movies}
-            isPreviousMoviesData={isPreviousMoviesData}
-            page={page}
-            setPage={setPage}
-            paramsPage={searchParams.page as number}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isMovies ? (
+                <MovieList
+                  movies={movies}
+                  isPreviousMoviesData={isPreviousMoviesData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              ) : isPeople ? (
+                <PersonSearchList
+                  persons={persons}
+                  isPreviousPersonsData={isPreviousPersonsData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              ) : (
+                <NoMatch />
+              )
+            }
           />
-        )}
-        {isPersons && persons && (
-          <PersonSearchList
-            persons={persons}
-            isPreviousPersonsData={isPreviousPersonsData}
-            page={page}
-            setPage={setPage}
-            paramsPage={searchParams.page as number}
+          <Route
+            path="movies"
+            element={
+              movies && movies.total_results > 0 ? (
+                <MovieList
+                  movies={movies}
+                  isPreviousMoviesData={isPreviousMoviesData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              ) : (
+                <NoMatch />
+              )
+            }
           />
-        )}
-        {!checkedValue && <p> No result match your search. Try again</p>}
+          <Route
+            path="people"
+            element={
+              persons && persons.total_results > 0 ? (
+                <PersonSearchList
+                  persons={persons}
+                  isPreviousPersonsData={isPreviousPersonsData}
+                  page={page}
+                  setPage={setPage}
+                  paramsPage={searchParams.page as number}
+                />
+              ) : (
+                <NoMatch />
+              )
+            }
+          />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
       </div>
     </div>
   );

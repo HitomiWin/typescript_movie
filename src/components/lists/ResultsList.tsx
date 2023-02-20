@@ -1,24 +1,31 @@
-import { FC } from "react";
-import { People, Movies } from "../../shared/type";
+import { FC, useEffect } from "react";
+import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
+import { Link, useParams } from "react-router-dom";
 
 interface Props {
   persons: People | undefined;
   movies: Movies | undefined;
-  checkedValue: People | Movies | undefined;
-  onChangeAttribute: (value: People | Movies | undefined) => void;
+  query: string | undefined;
+  page: number;
+  dataCategory: IDataCategory | null;
 }
 
 const ResultsList: FC<Props> = ({
   persons,
   movies,
-  checkedValue,
-  onChangeAttribute,
+  query,
+  page,
+  dataCategory,
 }) => {
   const options = [
-    { label: "Movies", name: "movies", value: movies },
-    { label: "People", name: "people", value: persons },
+    { label: "Movies", name: IDataCategory.movies, value: movies },
+    { label: "People", name: IDataCategory.people, value: persons },
   ];
+
+  const params = useParams();
+  const isDefault = Object(params)["*"] === "";
+
   return (
     <div className={styles.resultsListContainer}>
       <h3>Search Results</h3>
@@ -26,27 +33,36 @@ const ResultsList: FC<Props> = ({
         {options.map((option) => {
           const disabled = !option.value || option.value.total_results < 1;
           return (
-            <label
-              className={`${styles.formControl} ${
-                disabled ? styles.disabled : ""
-              }`}
+            <Link
+              to={`${option.name}?query=${query}&page=${page}`}
               key={option.label}>
-              <input
-                type="radio"
-                className={styles.checkBox}
-                name={option.name}
-                checked={checkedValue === option.value}
-                onChange={() => onChangeAttribute(option.value)}
-                disabled={disabled}
-              />
-              {option.label}
-              <span
-                className={`${styles.totalNumber} ${
+              <label
+                className={`${styles.formControl} ${
                   disabled ? styles.disabled : ""
-                }`}>
-                {option?.value?.total_results ?? 0}
-              </span>
-            </label>
+                }`}
+                key={option.label}>
+                <input
+                  type="radio"
+                  className={styles.checkBox}
+                  name={option.name}
+                  checked={
+                    isDefault
+                      ? option.name === dataCategory
+                      : option.name === Object(params)["*"]
+                  }
+                  readOnly
+                  value={option.name}
+                  disabled={disabled}
+                />
+                {option.label}
+                <span
+                  className={`${styles.totalNumber} ${
+                    disabled ? styles.disabled : ""
+                  }`}>
+                  {option?.value?.total_results ?? 0}
+                </span>
+              </label>
+            </Link>
           );
         })}
       </div>
