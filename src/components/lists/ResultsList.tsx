@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
 import { Link, useParams } from "react-router-dom";

@@ -26,7 +26,7 @@ const MovieList: FC<Props> = ({
     return () => {
       setPage(1);
     };
-  }, [moviePage]);
+  }, [moviePage, setPage]);
 
   useEffect(() => {
     return () => {

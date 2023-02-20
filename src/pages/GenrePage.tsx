@@ -7,6 +7,7 @@ import { FadeLoader } from "react-spinners";
 import GenresList from "../components/lists/GenresList";
 import MovieList from "../components/lists/MovieList";
 import setting from "../css/Search.module.scss";
+import stylesError from "../css/Home.module.scss";
 
 const GenrePage = () => {
   const { genre_id } = useParams();
@@ -31,6 +32,18 @@ const GenrePage = () => {
 
   if (isLoading) {
     <FadeLoader />;
+  }
+
+  if (isError) {
+    if (error instanceof Error) {
+      return (
+        <div className={stylesError.error}>
+          <h2 className={stylesError.errorText}>
+            Something went wrong. Please reload the page.
+          </h2>
+        </div>
+      );
+    }
   }
   return (
     <div className={`${setting.contentWrapper} wContainer`}>

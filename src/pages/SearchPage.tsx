@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
@@ -60,7 +60,8 @@ const SearchPage = () => {
 
   useEffect(() => {
     setSearchParams({ ...searchParams, query, page });
-  }, [query, page, searchParams]);
+  }, [query, page, searchParams, setSearchParams]);
+
   const isMovies = movies && movies.total_results > 0;
   const isPeople = persons && persons.total_results > 0;
 
@@ -71,13 +72,15 @@ const SearchPage = () => {
       return;
     }
     if (isPeople) {
+      console.log("people");
       setDataCategory(IDataCategory.people);
       navigate(`/search/people?query=${query}&page=1`);
       return;
     }
     setPage(1);
     setDataCategory(null);
-  }, [query]);
+    // eslint-disable-next-line
+  }, [query, isMovies, isPeople]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

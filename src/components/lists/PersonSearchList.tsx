@@ -15,7 +15,6 @@ interface Props {
 const PersonSearchList: FC<Props> = ({
   persons,
   isPreviousPersonsData,
-  page,
   setPage,
   paramsPage,
 }) => {
@@ -25,7 +24,7 @@ const PersonSearchList: FC<Props> = ({
     return () => {
       setPage(1);
     };
-  }, [personsPage]);
+  }, [personsPage, setPage]);
 
   return (
     <div className={styles.searchListContainer}>
