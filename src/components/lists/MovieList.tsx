@@ -10,14 +10,15 @@ interface Props {
   page: number;
   setPage: Dispatch<React.SetStateAction<number>>;
   paramsPage: number | undefined;
+  genreId?: string | undefined;
 }
 
 const MovieList: FC<Props> = ({
   movies,
   isPreviousMoviesData,
-
   setPage,
   paramsPage,
+  genreId,
 }) => {
   const [moviePage, setMoviePage] = useState(1);
   useEffect(() => {
@@ -26,6 +27,14 @@ const MovieList: FC<Props> = ({
       setPage(1);
     };
   }, [moviePage]);
+
+  useEffect(() => {
+    return () => {
+      if (genreId) {
+        setMoviePage(1);
+      }
+    };
+  }, [genreId]);
 
   return (
     <div className={styles.searchListContainer}>

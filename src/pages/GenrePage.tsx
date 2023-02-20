@@ -25,6 +25,10 @@ const GenrePage = () => {
     // eslint-disable-next-line
   }, [genre_id, page]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [genre_id]);
+
   if (isLoading) {
     <FadeLoader />;
   }
@@ -40,6 +44,7 @@ const GenrePage = () => {
           page={page}
           setPage={setPage}
           paramsPage={params.page as number}
+          genreId={genre_id}
         />
       ) : null}
     </div>
