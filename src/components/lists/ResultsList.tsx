@@ -1,22 +1,30 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 interface Props {
   persons: People | undefined;
   movies: Movies | undefined;
   query: string | undefined;
   page: number;
+  dataCategory: IDataCategory | null;
 }
 
-const ResultsList: FC<Props> = ({ persons, movies, query, page }) => {
+const ResultsList: FC<Props> = ({
+  persons,
+  movies,
+  query,
+  page,
+  dataCategory,
+}) => {
   const options = [
     { label: "Movies", name: IDataCategory.movies, value: movies },
     { label: "People", name: IDataCategory.people, value: persons },
   ];
 
-  // const handleOnChange = (optionName: IDataCategory) => {};
+  const params = useParams();
+  const isDefault = Object(params)["*"] === "";
 
   return (
     <div className={styles.resultsListContainer}>
@@ -37,6 +45,12 @@ const ResultsList: FC<Props> = ({ persons, movies, query, page }) => {
                   type="radio"
                   className={styles.checkBox}
                   name={option.name}
+                  checked={
+                    isDefault
+                      ? option.name === dataCategory
+                      : option.name === Object(params)["*"]
+                  }
+                  readOnly
                   value={option.name}
                   disabled={disabled}
                 />

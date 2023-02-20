@@ -15,13 +15,16 @@ interface Props {
 const MovieList: FC<Props> = ({
   movies,
   isPreviousMoviesData,
-  page,
+
   setPage,
   paramsPage,
 }) => {
-  const [moviePage, setMoviePage] = useState(page);
+  const [moviePage, setMoviePage] = useState(1);
   useEffect(() => {
     setPage(moviePage);
+    return () => {
+      setPage(1);
+    };
   }, [moviePage]);
 
   return (

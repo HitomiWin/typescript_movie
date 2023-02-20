@@ -14,11 +14,11 @@ import PersonSearchList from "../components/lists/PersonSearchList";
 import NoMatch from "./NoMatch";
 
 const SearchPage = () => {
-  const navigate = useNavigate();
   const types = {
     query: String,
     page: Number,
   };
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useUrlSearchParams(
     { query: undefined, page: undefined },
     types
@@ -64,24 +64,20 @@ const SearchPage = () => {
   const isMovies = movies && movies.total_results > 0;
   const isPeople = persons && persons.total_results > 0;
 
-  // useLayoutEffect(() => {
-  //   if (
-  //     movies?.total_results &&
-  //     movies.total_results > 0 &&
-  //     dataCategory !== IDataCategory.movies
-  //   ) {
-  //     setDataCategory(IDataCategory.movies);
-  //     return;
-  //   }
-  //   if (
-  //     persons?.total_results &&
-  //     persons.total_results > 0 &&
-  //     dataCategory !== IDataCategory.people
-  //   ) {
-  //     setDataCategory(IDataCategory.people);
-  //     return;
-  //   }
-  // }, [movies, persons]);
+  useEffect(() => {
+    if (isMovies) {
+      setDataCategory(IDataCategory.movies);
+      navigate(`/search/movies?query=${query}&page=1`);
+      return;
+    }
+    if (isPeople) {
+      setDataCategory(IDataCategory.people);
+      navigate(`/search/people?query=${query}&page=1`);
+      return;
+    }
+    setPage(1);
+    setDataCategory(null);
+  }, [query]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -120,6 +116,7 @@ const SearchPage = () => {
           movies={movies}
           query={query}
           page={page}
+          dataCategory={dataCategory}
         />
         <Routes>
           <Route
