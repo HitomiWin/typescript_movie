@@ -1,34 +1,23 @@
-@mixin display-child($n) {
-  @for $i from 2 through $n {
-    &:nth-child(#{$i}) {
-      a {
-        display: inline-block;
-      }
+.pagination {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    cursor: pointer;
+    width: 3rem;
+    height: 2rem;
+    background-color: yellow;
+    border: none;
+    border-radius: 5px;
+    &:disabled {
+      cursor: default;
+      background-color: gray;
+      color: yellow;
     }
   }
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
-ul,
-li {
-  list-style: none;
-  display: inline;
-  padding-left: 0px;
-}
-
-li {
-  &:hover {
-    span {
-      color: yellowgreen;
-    }
-  }
-  &.active {
-    span {
-      color: white;
-    }
+  h5 {
+    color: yellow;
+    text-align: center;
   }
 }

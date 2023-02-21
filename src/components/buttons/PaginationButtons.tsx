@@ -16,29 +16,9 @@ const PagenationButtons: FC<Props> = ({
   totalPages,
   isPreviousData,
 }) => {
-  let pages = [];
-  // const pageAmount = useMemo(
-  //   () => (totalPages < 8 ? totalPages : 7),
-
-  //   [totalPages]
-  // );
-  for (let i = 1; i < totalPages; i++) {
-    pages.push(i);
-  }
-  console.log(pages);
-
   return (
     <div className={styles.pagination}>
-      <ul>
-        {pages.map((page) => (
-          <li
-            className={`${paramsPage === page ? "active" : "inactive"} list`}
-            key={page}>
-            <span>{page}</span>
-          </li>
-        ))}
-      </ul>
-      {/* <button
+      <button
         onClick={() => setPage((current) => Math.max(current - 1, 1))}
         disabled={page === 1}>
         Prev
@@ -54,7 +34,7 @@ const PagenationButtons: FC<Props> = ({
         }}
         disabled={isPreviousData || page === totalPages}>
         Next
-      </button> */}
+      </button>
     </div>
   );
 };
