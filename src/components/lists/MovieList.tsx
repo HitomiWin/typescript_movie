@@ -34,7 +34,7 @@ const MovieList: FC<Props> = ({
         setMoviePage(1);
       }
     };
-  }, [genreId]);
+  }, [genreId, setMoviePage]);
 
   return (
     <div className={styles.searchListContainer}>

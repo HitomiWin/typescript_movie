@@ -12,8 +12,7 @@ interface Props {
 
 const GenresList: FC<Props> = ({ setPage, genreId }) => {
   const navigate = useNavigate();
-  const { getGenreName, genres, isLoading, isError, error } =
-    useGenresContext();
+  const { getGenreName, genres, isLoading } = useGenresContext();
 
   // when user click a button reset paget to 1
   const handleOnChange = (id: Genre["id"], name: Genre["name"]) => {
