@@ -29,12 +29,14 @@ const PersonDetail: FC<Props> = ({ person }) => {
     <>
       <div className={`${styles.imgText} wContainer`}>
         <div className={`${styles.imgTextContainer}`}>
-          <div className={styles.img}>
-            <img
-              src={posterUrl ?? "../../images/no-image-icon-23485.png"}
-              alt=""
-            />
-          </div>
+          {posterUrl ? (
+            <img className={styles.img} src={posterUrl} alt="" />
+          ) : (
+            <div className={styles.noImageContainer}>
+              <p> No Image</p>
+            </div>
+          )}
+
           <div className={`${styles.text} `}>
             <div
               className={`${styles.textContents} ${

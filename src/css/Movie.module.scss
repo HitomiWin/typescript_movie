@@ -43,6 +43,12 @@
     border-radius: var(--v-imageBorderRadius);
     z-index: 1;
   }
+  & .noImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0.8;
+  }
 }
 
 .crewNameJobContainer {

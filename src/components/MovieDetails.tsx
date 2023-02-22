@@ -34,11 +34,13 @@ const MovieDetails: FC<Props> = ({ movie }) => {
           <img className={`${styles.backgroundImg}`} src={backdropUrl} alt="" />
         )}
         <div className={`${styles.imgTextContainer}  wContainer`}>
-          <img
-            className={styles.img}
-            src={posterUrl ?? "../../images/no-image-icon-23485.png"}
-            alt=""
-          />
+          {posterUrl ? (
+            <img className={styles.img} src={posterUrl} alt="" />
+          ) : (
+            <div className={styles.noImageContainer}>
+              <p> No Image</p>
+            </div>
+          )}
           <div className={styles.text}>
             <div className={styles.textContents}>
               <h2 className={styles.head}>{movie.title}</h2>
