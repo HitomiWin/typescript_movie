@@ -5,7 +5,7 @@ import { getMoviesByGenre } from "../services/tmdbApi";
 import { useUrlSearchParams } from "use-url-search-params";
 import GenresList from "../components/lists/GenresList";
 import MovieList from "../components/lists/MovieList";
-import setting from "../css/Search.module.scss";
+import styles from "../css/Genres.module.scss";
 import base from "../css/Base.module.scss";
 import Loader from "../components/Loader";
 
@@ -46,10 +46,9 @@ const GenrePage: FC = () => {
     }
   }
   return (
-    <div className={`${setting.contentWrapper} wContainer`}>
-      <div>
-        <GenresList setPage={setPage} genreId={parseInt(genre_id ?? "")} />
-      </div>
+    <div className={`${styles.contentWrapper} wContainer`}>
+      <GenresList setPage={setPage} genreId={parseInt(genre_id ?? "")} />
+
       {data ? (
         <MovieList
           movies={data}

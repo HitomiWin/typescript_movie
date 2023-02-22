@@ -17,7 +17,7 @@ const Hero = () => {
   return (
     <section className={styles.hero}>
       <div className={`${styles.heroContainer} wContainer`}>
-        <h1>Movies changes your life</h1>
+        <h1>Movies change your life</h1>
         <p>Millions of movies and people to discover. Explore now.</p>
         <div className={styles.searchContainer}>
           <SearchForm handleSubmit={handleSubmit} searchRef={searchRef} />

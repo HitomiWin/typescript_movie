@@ -62,7 +62,7 @@
 @media screen and (min-width: 768px) {
   .imgTextContainer {
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     & .text {
       & .textContents {
         max-height: 478px;

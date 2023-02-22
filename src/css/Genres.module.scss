@@ -1,4 +1,4 @@
-.searchPageContainer {
+.container {
   padding: var(--v-space) 0;
 }
 
@@ -21,40 +21,27 @@
     box-sizing: border-box;
     padding: 8px 0;
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     & li {
+      font-size: clamp(16px, 2vw, 20px);
+      padding: 0.5em 0;
+      color: rgba(255, 255, 0, 0.7);
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1em;
+      span {
+        margin: 0 20px;
+      }
+
       &.current {
+        color: yellowgreen;
         background-color: rgba(128, 128, 128, 0.556);
       }
       &:hover {
         background-color: rgba(101, 101, 81, 0.347);
-      }
-      & a {
-        margin: 0 20px;
-        font-size: clamp(16px, 2vw, 20px);
-        padding: 0.5em 0;
-        color: rgba(255, 255, 0, 0.7);
-        font-weight: bold;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1em;
-
-        &.current {
-          color: yellowgreen;
-        }
-        &.disabled {
-          color: gray !important;
-        }
-      }
-      & .totalNumber {
-        color: yellow;
-        font: 14px Arial, sans-serif;
-        &.current {
-          color: yellowgreen;
-        }
-        &.disabled {
-          color: gray;
-        }
       }
     }
   }
@@ -66,6 +53,10 @@
   }
   .sidebarContainer {
     margin: 1rem 1rem 1rem 0;
-    flex-basis: 30%;
+    width: 250px;
+    & ul {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

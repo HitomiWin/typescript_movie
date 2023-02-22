@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
+
 import { Link, useParams } from "react-router-dom";
 
 interface Props {
@@ -25,47 +26,40 @@ const ResultsList: FC<Props> = ({
 
   const params = useParams();
   const isDefault = Object(params)["*"] === "";
+  const current = useMemo(
+    () => (isDefault ? dataCategory : Object(params)["*"]),
+    [params, dataCategory, isDefault]
+  );
 
   return (
-    <div className={styles.resultsListContainer}>
+    <div className={styles.sidebarContainer}>
       <h3>Search Results</h3>
-      <div className={styles.settingsPanel}>
+      <hr />
+      <ul className={styles.settingsPanel}>
         {options.map((option) => {
           const disabled = !option.value || option.value.total_results < 1;
+          const isCurrent = current === option.name;
           return (
-            <Link
-              to={`${option.name}?query=${query}&page=${page}`}
-              key={option.label}>
-              <label
-                className={`${styles.formControl} ${
+            <li
+              className={`${isCurrent && styles.current} list`}
+              key={option.name}>
+              <Link
+                to={`${option.name}?query=${query}&page=${page}`}
+                className={`${isCurrent && styles.current} ${
                   disabled ? styles.disabled : ""
-                }`}
-                key={option.label}>
-                <input
-                  type="radio"
-                  className={styles.checkBox}
-                  name={option.name}
-                  checked={
-                    isDefault
-                      ? option.name === dataCategory
-                      : option.name === Object(params)["*"]
-                  }
-                  readOnly
-                  value={option.name}
-                  disabled={disabled}
-                />
-                {option.label}
+                }`}>
+                {option.name}
                 <span
                   className={`${styles.totalNumber} ${
                     disabled ? styles.disabled : ""
-                  }`}>
+                  }${isCurrent && styles.current}`}>
                   {option?.value?.total_results ?? 0}
                 </span>
-              </label>
-            </Link>
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };
