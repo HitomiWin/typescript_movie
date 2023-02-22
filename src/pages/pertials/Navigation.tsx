@@ -11,6 +11,9 @@ const Navigation = () => {
   const handleNavButton = () => {
     setShowMenu(!showMenu);
   };
+  const hideMenu = () => {
+    setShowMenu(false);
+  };
 
   return (
     <header className={`${styles.header}`}>
@@ -32,14 +35,12 @@ const Navigation = () => {
         <nav className={styles.nav}>
           <ul>
             <li>
-              <NavLink to="/" onClick={() => handleNavButton()}>
+              <NavLink to="/" onClick={() => hideMenu()}>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to={`/genres/${genreId}`}
-                onClick={() => handleNavButton()}>
+              <NavLink to={`/genres/${genreId}`} onClick={() => hideMenu()}>
                 Genre
               </NavLink>
             </li>

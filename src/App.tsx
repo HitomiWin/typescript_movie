@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import SearchPage from "./pages/SearchPage";
 import styles from "./css/Navbar.module.scss";
 import { useNavbarContext } from "./contexts/NavBarContext";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const { showMenu } = useNavbarContext();
@@ -19,7 +20,8 @@ function App() {
         <Route path="movie/:movie_id" element={<MovieDetailsPage />} />
         <Route path="person/:person_id" element={<PersonDetailsPage />} />
         <Route path="search/*" element={<SearchPage />}></Route>
-        <Route path="/genres/:genre_id" element={<GenrePage />} />
+        <Route path="genres/:genre_id" element={<GenrePage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </div>
