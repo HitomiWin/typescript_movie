@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { useQuery } from "react-query";
-import { FadeLoader } from "react-spinners";
 import { getMoviesByPerson } from "../services/tmdbApi";
 import styles from "../css/Home.module.scss";
+import base from "../css/Base.module.scss";
 import MovieCardList from "./lists/MovieCardList";
+import Loader from "./Loader";
 
 interface Props {
   person_id: number;
@@ -18,8 +19,8 @@ const MoviesByPerson: FC<Props> = ({ person_id }) => {
   if (isError) {
     if (error instanceof Error) {
       return (
-        <div className={styles.error}>
-          <h2 className={styles.errorText}>
+        <div className={base.error}>
+          <h2 className={base.errorText}>
             Something went wrong. Please reload the page.
           </h2>
         </div>
@@ -33,13 +34,7 @@ const MoviesByPerson: FC<Props> = ({ person_id }) => {
           <h3 className={styles.headingTxt}>Known For</h3>
         </div>
       </div>
-      {isLoading ? (
-        <div className={styles.spinner}>
-          <FadeLoader />
-        </div>
-      ) : data ? (
-        <MovieCardList data={data} />
-      ) : null}
+      {isLoading ? <Loader /> : data ? <MovieCardList data={data} /> : null}
     </div>
   );
 };

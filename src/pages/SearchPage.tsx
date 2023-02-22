@@ -4,14 +4,14 @@ import { useUrlSearchParams } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
 import { getMoviesBySearch, getPersonsBySearch } from "../services";
 import styles from "../css/Search.module.scss";
-import { FadeLoader } from "react-spinners";
-import home from "../css/Home.module.scss";
+import base from "../css/Base.module.scss";
 import ResultsList from "../components/lists/ResultsList";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { IDataCategory } from "../shared/type";
 import MovieList from "../components/lists/MovieList";
 import PersonSearchList from "../components/lists/PersonSearchList";
 import NoMatch from "./NoMatch";
+import Loader from "../components/Loader";
 
 const SearchPage = () => {
   const types = {
@@ -88,17 +88,13 @@ const SearchPage = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className={home.spinner}>
-        <FadeLoader />
-      </div>
-    );
+    return <Loader />;
   }
   if (isError) {
     if (personsError instanceof Error || moviesError instanceof Error) {
       return (
-        <div className={home.error}>
-          <h2 className={home.errorText}>
+        <div className={base.error}>
+          <h2 className={base.errorText}>
             Something went wrong. Please reload the page.
           </h2>
         </div>

@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getMovieDetails } from "../services";
 import home from "../css/Home.module.scss";
-import { FadeLoader } from "react-spinners";
 import MovieDetails from "../components/MovieDetails";
 import PersonCardList from "../components/lists/PersonCardList";
+import Loader from "../components/Loader";
 
 const MovieDetailsPage = () => {
   const { movie_id } = useParams();
@@ -14,11 +14,7 @@ const MovieDetailsPage = () => {
   );
 
   if (isLoading) {
-    return (
-      <div className={home.spinner}>
-        <FadeLoader />
-      </div>
-    );
+    return <Loader />;
   }
 
   if (isError) {

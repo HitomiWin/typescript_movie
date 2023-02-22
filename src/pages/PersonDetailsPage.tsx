@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getPerson } from "../services";
-import { FadeLoader } from "react-spinners";
-import home from "../css/Home.module.scss";
+import base from "../css/Base.module.scss";
 import PersonDetail from "../components/PersonDetails";
 import MoviesByPerson from "../components/MoviesByPerson";
+import Loader from "../components/Loader";
 
 const PersonDetailsPage = () => {
   const { person_id } = useParams();
@@ -14,17 +14,14 @@ const PersonDetailsPage = () => {
   );
 
   if (isLoading) {
-    return (
-      <div className={home.spinner}>
-        <FadeLoader />
-      </div>
-    );
+    return <Loader />;
   }
+
   if (isError) {
     if (error instanceof Error) {
       return (
-        <div className={home.error}>
-          <h2 className={home.errorText}>
+        <div className={base.error}>
+          <h2 className={base.errorText}>
             Something went wrong. Please reload the page.
           </h2>
         </div>

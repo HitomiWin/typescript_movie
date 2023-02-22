@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
-import FadeLoader from "react-spinners/FadeLoader";
 import styles from "../css/Home.module.scss";
+import base from "../css/Base.module.scss";
 import { getTrendingMovies } from "../services";
 
 import MovieCardList from "./lists/MovieCardList";
 import { ITrendingType } from "../shared/type";
+import Loader from "./Loader";
 
 const initialParams = {
   timeWindow: ITrendingType.day,
@@ -39,11 +40,12 @@ const TrendignMovies = () => {
 
   const isDaily = timeWindow === ITrendingType.day;
   const isWeekly = timeWindow === ITrendingType.week;
+
   if (isError) {
     if (error instanceof Error) {
       return (
-        <div className={styles.error}>
-          <h2 className={styles.errorText}>
+        <div className={base.error}>
+          <h2 className={base.errorText}>
             {" "}
             Something went wrong. Please reload the page.
           </h2>
@@ -79,13 +81,7 @@ const TrendignMovies = () => {
           </button>
         </div>
       </div>
-      {isLoading ? (
-        <div className={styles.spinner}>
-          <FadeLoader />
-        </div>
-      ) : data ? (
-        <MovieCardList data={data} />
-      ) : null}
+      {isLoading ? <Loader /> : data ? <MovieCardList data={data} /> : null}
     </section>
   );
 };

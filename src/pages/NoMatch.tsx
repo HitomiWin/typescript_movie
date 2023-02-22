@@ -1,7 +1,11 @@
-import React from "react";
+import styles from "../css/Base.module.scss";
 
 const NoMatch = () => {
-  return <p>NoMatch</p>;
+  return (
+    <h3 className={styles.center}>
+      There are no movies that matched your query.
+    </h3>
+  );
 };
 
 export default NoMatch;
