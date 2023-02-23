@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App";
 import NavBarContextProvider from "./contexts/NavBarContext";
 import GenresContextProvider from "./contexts/GenreContext";
+import ScrollToTop from "./helpers/ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +27,7 @@ root.render(
       <BrowserRouter>
         <GenresContextProvider>
           <NavBarContextProvider>
+            <ScrollToTop />
             <App />
           </NavBarContextProvider>
         </GenresContextProvider>

@@ -82,6 +82,14 @@ const SearchPage = () => {
     // eslint-disable-next-line
   }, [query, isMovies, isPeople]);
 
+  useEffect(() => {
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+    });
+    // eslint-disable-next-line
+  }, [page]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setQuery(searchRef?.current?.value);
