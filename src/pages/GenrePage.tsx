@@ -23,6 +23,10 @@ const GenrePage: FC = () => {
   );
   useEffect(() => {
     setParams({ ...params, page });
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+    });
     // eslint-disable-next-line
   }, [genre_id, page]);
 
@@ -48,7 +52,6 @@ const GenrePage: FC = () => {
   return (
     <div className={`${styles.contentWrapper} wContainer`}>
       <GenresList setPage={setPage} genreId={parseInt(genre_id ?? "")} />
-
       {data ? (
         <MovieList
           movies={data}

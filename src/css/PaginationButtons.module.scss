@@ -7,17 +7,17 @@
     cursor: pointer;
     width: 3rem;
     height: 2rem;
-    background-color: yellow;
+    background-color: var(--v-baseColor);
     border: none;
     border-radius: 5px;
     &:disabled {
       cursor: default;
-      background-color: gray;
+      background-color: var(--v-gray);
       color: yellow;
     }
   }
   h5 {
-    color: yellow;
+    color: var(--v-baseColor);
     text-align: center;
   }
 }

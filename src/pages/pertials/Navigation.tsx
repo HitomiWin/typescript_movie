@@ -35,12 +35,18 @@ const Navigation = () => {
         <nav className={styles.nav}>
           <ul>
             <li>
-              <NavLink to="/" onClick={() => hideMenu()}>
+              <NavLink
+                to="/"
+                onClick={() => hideMenu()}
+                className={styles.menuItem}>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/genres/${genreId}`} onClick={() => hideMenu()}>
+              <NavLink
+                to={`/genres/${genreId}`}
+                onClick={() => hideMenu()}
+                className={styles.menuItem}>
                 Genre
               </NavLink>
             </li>

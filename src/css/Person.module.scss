@@ -23,13 +23,13 @@
   & .text {
     position: relative;
     & .readMore {
-      color: yellow;
+      color: var(--v-baseColor);
       position: absolute;
       right: 0;
       padding-top: 5px;
       cursor: pointer;
       & > :hover {
-        color: greenyellow;
+        color: var(--v-hoverColor);
       }
     }
     & .textContents {

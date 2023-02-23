@@ -9,7 +9,7 @@
 }
 
 .sidebarContainer {
-  border: 1px solid yellow;
+  border: 1px solid var(--v-baseColor);
   border-radius: var(--v-imageBorderRadius);
   margin: 1rem 0;
   height: min-content;
@@ -37,7 +37,7 @@
       }
 
       &.current {
-        color: yellowgreen;
+        color: var(--v-hoverColor);
         background-color: rgba(128, 128, 128, 0.556);
       }
       &:hover {

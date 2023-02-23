@@ -29,22 +29,22 @@
     padding: clamp(2px, 5.2vw, 5px);
     box-sizing: border-box;
     border-radius: 4px;
-    border: 1px solid yellow;
+    border: 1px solid var(--v-baseColor);
     font-size: clamp(12px, 5.2vw, 16px);
     text-shadow: 6px #00000052;
-    color: yellow;
+    color: var(--v-baseColor);
   }
   .active {
-    background-color: yellow;
+    background-color: var(--v-baseColor);
     color: black;
     cursor: inherit;
   }
   .inactive {
-    background-color: gray;
+    background-color: var(--v-gray);
     cursor: pointer;
 
     &:hover {
-      color: yellowgreen;
+      color: var(--v-hoverColor);
       background-color: black;
     }
   }
