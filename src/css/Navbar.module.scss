@@ -11,11 +11,11 @@
 
 .logo {
   & > span {
-    color: yellow;
+    color: var(--v-baseColor);
     font-size: 1.8em;
     font-weight: 700;
     &:hover {
-      color: greenyellow;
+      color: var(--v-hoverColor);
     }
   }
 }
@@ -25,14 +25,14 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: yellow;
+  color: var(--v-baseColor);
   font-size: 1.8em;
   &:hover {
-    color: greenyellow;
+    color: var(--v-hoverColor);
   }
   &.showMenu {
     z-index: 110;
-    color: yellow;
+    color: var(--v-baseColor);
     & .faBars {
       display: none;
     }
@@ -49,10 +49,11 @@
   }
 }
 
-// .navbtn .showMenu {
-//   z-index: 110;
-//   color: yellow;
-// }
+.menuItem {
+  &:hover {
+    color: var(--v-hoverColor);
+  }
+}
 
 .searchContainer {
   width: 400px;

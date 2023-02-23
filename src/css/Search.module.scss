@@ -9,7 +9,7 @@
 }
 
 .sidebarContainer {
-  border: 1px solid yellow;
+  border: 1px solid var(--v-baseColor);
   border-radius: var(--v-imageBorderRadius);
   margin: 1rem 0;
   height: min-content;
@@ -40,20 +40,20 @@
         gap: 1em;
 
         &.current {
-          color: yellowgreen;
+          color: var(--v-hoverColor);
         }
         &.disabled {
-          color: gray !important;
+          color: var(-v--gray) !important;
         }
       }
       & .totalNumber {
-        color: yellow;
+        color: var(--v-baseColor);
         font: 14px Arial, sans-serif;
         &.current {
-          color: yellowgreen;
+          color: var(--v-hoverColor);
         }
         &.disabled {
-          color: gray;
+          color: var(-v--gray);
         }
       }
     }

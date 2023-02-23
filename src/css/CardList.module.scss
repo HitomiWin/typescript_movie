@@ -19,7 +19,7 @@
 
   &:hover {
     transform: scale(1.02) perspective(0px);
-    box-shadow: 0 10px 10px greenyellow;
+    box-shadow: 0 10px 10px var(--v-hoverColor);
   }
   & figure {
     display: flex;

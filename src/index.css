@@ -13,6 +13,10 @@
   --v-maxPrimaryPageWidth: 1366px;
 
   --v-imageBorderRadius: 5px;
+
+  --v-baseColor: yellow;
+  --v-hoverColor: yellowgreen;
+  --v-gray: gray;
 }
 
 body {
@@ -34,7 +38,7 @@ h1,
 h2,
 h3 {
   font-family: "Montserrat", sans-serif;
-  color: yellow;
+  color: var(--v-baseColor);
 }
 
 p {
@@ -53,11 +57,11 @@ code {
 a,
 u {
   text-decoration: none;
-  color: yellow;
+  color: var(--v-baseColor);
 }
 
 hr {
-  color: yellow;
+  color: var(--v-baseColor);
 }
 
 .wContainer {

@@ -13,8 +13,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      border-color: yellow;
-      color: yellow;
+      border-color: var(--v-baseColor);
+      color: var(--v-baseColor);
     }
 
     & .searchBtn {
@@ -26,10 +26,10 @@
       border: none;
       background-color: transparent;
       cursor: pointer;
-      color: yellow;
+      color: var(--v-baseColor);
       font-size: 1.8em;
       &:hover {
-        color: yellow;
+        color: var(--v-baseColor);
       }
     }
   }

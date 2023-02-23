@@ -44,7 +44,7 @@ const PersonDetail: FC<Props> = ({ person }) => {
               }`}
               ref={ref}>
               <h2 className={styles.head}>{person.name}</h2>
-              <h3 className={styles.head}>Biography</h3>
+              {personBiography && <h3 className={styles.head}>Biography</h3>}
               {bipgraphytexts.map((text, i) => (
                 <p key={i}>{text}</p>
               ))}
