@@ -1,0 +1,104 @@
+.header {
+  height: 90px;
+  background-color: black;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  & > span {
+    color: yellow;
+    font-size: 1.8em;
+    font-weight: 700;
+    &:hover {
+      color: greenyellow;
+    }
+  }
+}
+.navbtn {
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: yellow;
+  font-size: 1.8em;
+  &:hover {
+    color: greenyellow;
+  }
+  &.showMenu {
+    z-index: 110;
+    color: yellow;
+    & .faBars {
+      display: none;
+    }
+    & .faTimes {
+      display: revert;
+    }
+  }
+  & .faBars {
+    display: revert;
+  }
+
+  & .faTimes {
+    display: none;
+  }
+}
+
+// .navbtn .showMenu {
+//   z-index: 110;
+//   color: yellow;
+// }
+
+.searchContainer {
+  width: 400px;
+
+  & .searchInput {
+    width: 100%;
+  }
+}
+
+@media (min-width: 767px) {
+  .navbtn {
+    display: none;
+  }
+  .nav ul {
+    display: flex;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav {
+    position: fixed;
+    inset: 0 -100% 0 100%;
+    z-index: 100;
+    background-color: #42483af3;
+    transition: transform 0.3s;
+  }
+
+  .open .nav {
+    transform: translate(-100%, 0);
+  }
+
+  // .app .open {
+  //   position: fixed;
+  //   overflow: hidden;
+  // }
+
+  .nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}

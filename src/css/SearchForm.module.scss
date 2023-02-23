@@ -1,0 +1,36 @@
+.searchContainer {
+  width: 100%;
+  & .form {
+    position: relative;
+    & .searchInput {
+      width: 100%;
+      min-width: 300px;
+      background: black;
+      height: 60px;
+      border-radius: 10px;
+      font-size: clamp(16px, 2.2vw, 20px);
+      padding: 5px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-color: yellow;
+      color: yellow;
+    }
+
+    & .searchBtn {
+      position: absolute;
+      bottom: 12.5px;
+      right: 20px;
+      padding: 0;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      color: yellow;
+      font-size: 1.8em;
+      &:hover {
+        color: yellow;
+      }
+    }
+  }
+}

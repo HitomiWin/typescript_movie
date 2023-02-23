@@ -1,0 +1,99 @@
+.imgText {
+  display: grid;
+  grid-template-rows: max-content;
+  & > * {
+    grid-area: 1/1;
+  }
+  & .backgroundImg {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0.15;
+  }
+}
+
+.imgTextContainer {
+  padding: var(--v-space) 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(45px, 6vw, 80px);
+  & .text {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 6vw, 35px);
+    .textContents {
+      & .head {
+        margin-bottom: 0.5em;
+      }
+      & h2 {
+        font-size: clamp(20px, 2.6vw, 40px);
+      }
+      & h3 {
+        font-size: clamp(16px, 2vw, 24px);
+      }
+      & p {
+        font-size: clamp(12px, 2vw, 20px);
+      }
+    }
+  }
+  .imgWrapper {
+    margin: 0 auto;
+    & .img {
+      width: 300px;
+      border-radius: var(--v-imageBorderRadius);
+      z-index: 1;
+    }
+  }
+  & .noImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0.8;
+  }
+}
+
+.crewNameJobContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 25px;
+  & > .crewNameJob {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .imgText {
+    & .backgroundImg {
+      height: 550px;
+    }
+  }
+  .imgTextContainer {
+    flex-direction: row;
+    > .text {
+      flex: 2;
+    }
+    > .imgWrapper {
+      flex: 1;
+      display: block;
+      & .img {
+        width: 300px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 992px) {
+  .imgText {
+    & .backgroundImg {
+      height: 650px;
+    }
+  }
+  .imgTextContainer {
+    & .imgWrapper {
+      .img {
+        width: 400px;
+      }
+    }
+  }
+}

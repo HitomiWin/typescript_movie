@@ -1,0 +1,64 @@
+.listContainer {
+  padding: var(--v-space) 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  gap: 25px;
+  & .card {
+    width: 200px;
+  }
+}
+
+.card {
+  display: block;
+  margin: 1em;
+  transition: transform 0.5s, box-shadow 1s;
+
+  &:hover {
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 10px 10px greenyellow;
+  }
+  & figure {
+    display: flex;
+    justify-content: center;
+    & img {
+      border-radius: 5px;
+      aspect-ratio: 2/3;
+      cursor: pointer;
+      max-width: 100%;
+    }
+    & .noImageContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      aspect-ratio: 2/3;
+    }
+  }
+
+  & .titleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.8rem;
+    & h3 {
+      /* 16 / 768 (ipad) *100 = 2vw*/
+      font-size: clamp(16px, 2vw, 20px);
+      min-height: 0vw;
+      text-align: center;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    & p {
+      /* 12 / 768 (ipad) *100 = 1.6vw*/
+      font-size: clamp(14px, 1.6vw, 16px);
+      margin-top: 0;
+      text-align: center;
+    }
+  }
+}
