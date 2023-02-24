@@ -30,9 +30,12 @@ const MovieDetails: FC<Props> = ({ movie }) => {
   return (
     <>
       <div className={`${styles.imgText}`}>
-        {backdropUrl && (
-          <img className={`${styles.backgroundImg}`} src={backdropUrl} alt="" />
-        )}
+        <div
+          className={styles.bg}
+          style={{
+            backgroundImage: `url(
+        ${backdropUrl})`,
+          }}></div>
         <div className={`${styles.imgTextContainer}  wContainer`}>
           {posterUrl ? (
             <div className={styles.imgWrapper}>
