@@ -69,6 +69,7 @@
   }
   .nav ul {
     display: flex;
+    align-items: center;
     gap: 40px;
   }
 }
@@ -85,11 +86,6 @@
   .open .nav {
     transform: translate(-100%, 0);
   }
-
-  // .app .open {
-  //   position: fixed;
-  //   overflow: hidden;
-  // }
 
   .nav ul {
     display: flex;

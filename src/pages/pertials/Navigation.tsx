@@ -1,7 +1,7 @@
 import styles from "../../css/Navbar.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavbarContext } from "../../contexts/NavBarContext";
 import { useGenresContext } from "../../contexts/GenreContext";
 
@@ -48,6 +48,18 @@ const Navigation = () => {
                 onClick={() => hideMenu()}
                 className={styles.menuItem}>
                 Genre
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/search`}
+                onClick={() => hideMenu()}
+                className={styles.menuItem}>
+                <FontAwesomeIcon
+                  className={styles.fas}
+                  size="lg"
+                  icon={faSearch}
+                />
               </NavLink>
             </li>
           </ul>
