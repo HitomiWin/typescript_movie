@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, MutableRefObject, useMemo, useRef } from "react";
 import { Movie } from "../shared/type";
+import { useGetHeight } from "../hooks/useGetHeight";
 
 import styles from "../css/Movie.module.scss";
 interface Props {
@@ -17,6 +18,8 @@ const MovieDetails: FC<Props> = ({ movie }) => {
   const crewArray = movie.credits.crew.sort(function (a, b) {
     return b.popularity - a.popularity;
   });
+  const height = useGetHeight(styles.imgText);
+  const isOverFlow = useMemo(() => height && height > 650, [height]);
   const topFiveCrew = crewArray
     .filter(
       (crew, i, self) =>
@@ -26,12 +29,18 @@ const MovieDetails: FC<Props> = ({ movie }) => {
   const topFiveCrewWithDirector = director
     ? [director, ...topFiveCrew]
     : [...topFiveCrew];
-
+  console.log(isOverFlow, height);
   return (
     <>
       <div className={`${styles.imgText}`}>
         {backdropUrl && (
-          <img className={`${styles.backgroundImg}`} src={backdropUrl} alt="" />
+          <img
+            className={`${styles.backgroundImg} ${
+              isOverFlow && styles.isOverFlow
+            }`}
+            src={backdropUrl}
+            alt=""
+          />
         )}
         <div className={`${styles.imgTextContainer}  wContainer`}>
           {posterUrl ? (
@@ -61,7 +70,7 @@ const MovieDetails: FC<Props> = ({ movie }) => {
                 {topFiveCrewWithDirector.map(({ name, job }, i) => (
                   <div className={styles.crewNameJob} key={i}>
                     <p>{name}</p>
-                    <p>{job}</p>{" "}
+                    <p>{job}</p>
                   </div>
                 ))}
               </div>

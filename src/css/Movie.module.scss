@@ -10,6 +10,9 @@
     object-fit: cover;
     object-position: top;
     opacity: 0.15;
+    &.isOverFlow {
+      height: 100%;
+    }
   }
 }
 
@@ -83,7 +86,7 @@
     }
   }
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 768px) {
   .imgText {
     & .backgroundImg {
       height: 650px;
