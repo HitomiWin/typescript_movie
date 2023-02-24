@@ -1,12 +1,19 @@
-import { FC, MutableRefObject, useMemo, useRef } from "react";
+import { FC, MutableRefObject, useRef } from "react";
 import { Movie } from "../shared/type";
-import { useGetHeight } from "../hooks/useGetHeight";
+import { useGetOverFlowImage } from "../hooks/useGetOverFlowImage";
 
 import styles from "../css/Movie.module.scss";
 interface Props {
   readonly movie: Movie;
 }
 const MovieDetails: FC<Props> = ({ movie }) => {
+  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const isOverflow = useGetOverFlowImage({
+    ref,
+    callback: (isOverflowFromCallback: boolean) => {
+      return isOverflowFromCallback;
+    },
+  });
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w400${movie.poster_path}`
     : null;
@@ -18,8 +25,6 @@ const MovieDetails: FC<Props> = ({ movie }) => {
   const crewArray = movie.credits.crew.sort(function (a, b) {
     return b.popularity - a.popularity;
   });
-  const height = useGetHeight(styles.imgText);
-  const isOverFlow = useMemo(() => height && height > 650, [height]);
   const topFiveCrew = crewArray
     .filter(
       (crew, i, self) =>
@@ -29,14 +34,14 @@ const MovieDetails: FC<Props> = ({ movie }) => {
   const topFiveCrewWithDirector = director
     ? [director, ...topFiveCrew]
     : [...topFiveCrew];
-  console.log(isOverFlow, height);
+
   return (
     <>
-      <div className={`${styles.imgText}`}>
+      <div className={`${styles.imgText}`} ref={ref}>
         {backdropUrl && (
           <img
             className={`${styles.backgroundImg} ${
-              isOverFlow && styles.isOverFlow
+              isOverflow && styles.isOverFlow
             }`}
             src={backdropUrl}
             alt=""
