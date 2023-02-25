@@ -29,6 +29,8 @@ const MovieDetails: FC<Props> = ({ movie }) => {
     ? [director, ...topFiveCrew]
     : [...topFiveCrew];
 
+  const goToPerson = (id: number) => {};
+
   return (
     <>
       <div className={`${styles.imgText}`}>

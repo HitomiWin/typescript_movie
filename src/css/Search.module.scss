@@ -50,7 +50,7 @@
         }
         &.disabled {
           color: var(--v-gray);
-          cursor: default;
+          cursor: not-allowed;
         }
         & .totalNumber {
           font: 14px Arial, sans-serif;
