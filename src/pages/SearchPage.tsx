@@ -12,6 +12,7 @@ import MovieList from "../components/lists/MovieList";
 import PersonSearchList from "../components/lists/PersonSearchList";
 import NoMatch from "./NoMatch";
 import Loader from "../components/Loader";
+import NoQuery from "./NoQuery";
 
 const SearchPage = () => {
   const types = {
@@ -117,74 +118,78 @@ const SearchPage = () => {
         handleSubmit={handleSubmit}
         searchRef={searchRef}
       />
-      <div className={styles.contentWrapper}>
-        <ResultsList
-          persons={persons}
-          movies={movies}
-          query={query}
-          page={page}
-          dataCategory={dataCategory}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              isMovies ? (
-                <MovieList
-                  movies={movies}
-                  isPreviousMoviesData={isPreviousMoviesData}
-                  page={page}
-                  setPage={setPage}
-                  paramsPage={searchParams.page as number}
-                />
-              ) : isPeople ? (
-                <PersonSearchList
-                  persons={persons}
-                  isPreviousPersonsData={isPreviousPersonsData}
-                  page={page}
-                  setPage={setPage}
-                  paramsPage={searchParams.page as number}
-                />
-              ) : (
-                <NoMatch />
-              )
-            }
+      {!query || query === "" ? (
+        <NoQuery />
+      ) : (
+        <div className={styles.contentWrapper}>
+          <ResultsList
+            persons={persons}
+            movies={movies}
+            query={query}
+            page={page}
+            dataCategory={dataCategory}
           />
-          <Route
-            path="movies"
-            element={
-              movies && movies.total_results > 0 ? (
-                <MovieList
-                  movies={movies}
-                  isPreviousMoviesData={isPreviousMoviesData}
-                  page={page}
-                  setPage={setPage}
-                  paramsPage={searchParams.page as number}
-                />
-              ) : (
-                <NoMatch />
-              )
-            }
-          />
-          <Route
-            path="people"
-            element={
-              persons && persons.total_results > 0 ? (
-                <PersonSearchList
-                  persons={persons}
-                  isPreviousPersonsData={isPreviousPersonsData}
-                  page={page}
-                  setPage={setPage}
-                  paramsPage={searchParams.page as number}
-                />
-              ) : (
-                <NoMatch />
-              )
-            }
-          />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
-      </div>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                isMovies ? (
+                  <MovieList
+                    movies={movies}
+                    isPreviousMoviesData={isPreviousMoviesData}
+                    page={page}
+                    setPage={setPage}
+                    paramsPage={searchParams.page as number}
+                  />
+                ) : isPeople ? (
+                  <PersonSearchList
+                    persons={persons}
+                    isPreviousPersonsData={isPreviousPersonsData}
+                    page={page}
+                    setPage={setPage}
+                    paramsPage={searchParams.page as number}
+                  />
+                ) : (
+                  <NoMatch />
+                )
+              }
+            />
+            <Route
+              path="movies"
+              element={
+                movies && movies.total_results > 0 ? (
+                  <MovieList
+                    movies={movies}
+                    isPreviousMoviesData={isPreviousMoviesData}
+                    page={page}
+                    setPage={setPage}
+                    paramsPage={searchParams.page as number}
+                  />
+                ) : (
+                  <NoMatch />
+                )
+              }
+            />
+            <Route
+              path="people"
+              element={
+                persons && persons.total_results > 0 ? (
+                  <PersonSearchList
+                    persons={persons}
+                    isPreviousPersonsData={isPreviousPersonsData}
+                    page={page}
+                    setPage={setPage}
+                    paramsPage={searchParams.page as number}
+                  />
+                ) : (
+                  <NoMatch />
+                )
+              }
+            />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 };

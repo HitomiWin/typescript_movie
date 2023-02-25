@@ -30,13 +30,13 @@
         margin-bottom: 0.5em;
       }
       & h2 {
-        font-size: clamp(20px, 2.6vw, 40px);
+        font-size: clamp(32px, 2.6vw, 40px);
       }
       & h3 {
-        font-size: clamp(16px, 2vw, 24px);
+        font-size: clamp(20px, 2vw, 24px);
       }
       & p {
-        font-size: clamp(12px, 2vw, 20px);
+        font-size: clamp(16px, 2vw, 20px);
       }
     }
   }
@@ -63,6 +63,16 @@
   & > .crewNameJob {
     display: flex;
     flex-direction: column;
+    & .personName {
+      font-weight: 700;
+      &:hover {
+        cursor: pointer;
+        color: var(--v-hoverColor);
+      }
+    }
+    & p:nth-child(2) {
+      font-size: clamp(14px, 2vw, 16px);
+    }
   }
 }
 
