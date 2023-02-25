@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavbarContext } from "../../contexts/NavBarContext";
 import { useGenresContext } from "../../contexts/GenreContext";
+import { useLayoutEffect } from "react";
 
 const Navigation = () => {
   const { showMenu, setShowMenu } = useNavbarContext();
@@ -14,6 +15,14 @@ const Navigation = () => {
   const hideMenu = () => {
     setShowMenu(false);
   };
+  useLayoutEffect(() => {
+    if (showMenu) {
+      document.querySelector("html")?.classList.add("open");
+    }
+    if (!showMenu) {
+      document.querySelector("html")?.classList.remove("open");
+    }
+  }, [showMenu]);
 
   return (
     <header className={`${styles.header}`}>
