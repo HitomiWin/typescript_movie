@@ -2,9 +2,9 @@ import styles from "../css/Base.module.scss";
 
 const NoMatch = () => {
   return (
-    <h3 className={styles.center}>
-      There are no movies that matched your query.
-    </h3>
+    <div className={styles.marginAuto}>
+      <h3>There are no movies that matched your query.</h3>
+    </div>
   );
 };
 

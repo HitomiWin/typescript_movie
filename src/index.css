@@ -5,9 +5,9 @@
 
 :root {
   --v-space: clamp(
-    20px,
+    2rem,
     2.2vw,
-    30px
+    3rem
   ); /* space screen <1000px 20px, 30 / 1366 px (screen) * 100 = 2.2vw, screen >1334px 30px*/
 
   --v-maxPrimaryPageWidth: 1366px;
@@ -24,6 +24,10 @@ body {
   font-family: "Open Sans", sans-serif;
   background-color: #121210;
 }
+.open body {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,
