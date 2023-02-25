@@ -1,11 +1,13 @@
 import { FC } from "react";
 import { Movie } from "../shared/type";
+import { useNavigate } from "react-router-dom";
 
 import styles from "../css/Movie.module.scss";
 interface Props {
   readonly movie: Movie;
 }
 const MovieDetails: FC<Props> = ({ movie }) => {
+  const navigate = useNavigate();
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w400${movie.poster_path}`
     : null;
@@ -61,9 +63,13 @@ const MovieDetails: FC<Props> = ({ movie }) => {
             <div className={styles.textContents}>
               <h3 className={styles.head}>Crew</h3>
               <div className={styles.crewNameJobContainer}>
-                {topFiveCrewWithDirector.map(({ name, job }, i) => (
+                {topFiveCrewWithDirector.map(({ name, job, id }, i) => (
                   <div className={styles.crewNameJob} key={i}>
-                    <p>{name}</p>
+                    <p
+                      onClick={() => navigate(`/person/${id}`)}
+                      className={styles.personName}>
+                      {name}
+                    </p>
                     <p>{job}</p>{" "}
                   </div>
                 ))}

@@ -43,17 +43,11 @@
           color: var(--v-hoverColor);
         }
         &.disabled {
-          color: var(-v--gray) !important;
+          color: var(--v-gray);
+          cursor: not-allowed;
         }
-      }
-      & .totalNumber {
-        color: var(--v-baseColor);
-        font: 14px Arial, sans-serif;
-        &.current {
-          color: var(--v-hoverColor);
-        }
-        &.disabled {
-          color: var(-v--gray);
+        & .totalNumber {
+          font: 14px Arial, sans-serif;
         }
       }
     }
