@@ -24,26 +24,33 @@
     & li {
       &.current {
         background-color: rgba(128, 128, 128, 0.556);
+        &.disabled {
+          background-color: none;
+        }
       }
       &:hover {
         background-color: rgba(101, 101, 81, 0.347);
       }
+
       & p {
+        display: block;
         margin: 0 20px;
         font-size: clamp(16px, 2vw, 20px);
         padding: 0.5em 0;
-        color: rgba(255, 255, 0, 0.7);
+        color: #d49e17cd;
         font-weight: bold;
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 1em;
-
+        cursor: pointer;
         &.current {
           color: var(--v-hoverColor);
+          cursor: default;
         }
         &.disabled {
           color: var(--v-gray);
+          cursor: default;
         }
         & .totalNumber {
           font: 14px Arial, sans-serif;
