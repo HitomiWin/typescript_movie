@@ -52,9 +52,9 @@ const ResultsList: FC<Props> = ({
               key={option.name}>
               <p
                 onClick={() => handleOnClick(option.name, disabled)}
-                className={`${styles.resultList}${
-                  isCurrent && styles.current
-                } ${disabled ? styles.disabled : ""}`}>
+                className={`${isCurrent ? styles.current : ""} ${
+                  disabled ? styles.disabled : ""
+                }`}>
                 {option.name}
                 <span
                   className={`${styles.totalNumber} ${

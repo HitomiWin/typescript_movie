@@ -2,6 +2,7 @@
   margin: 3rem 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   button {
     cursor: pointer;
@@ -10,10 +11,13 @@
     background-color: var(--v-baseColor);
     border: none;
     border-radius: 5px;
+    &:hover {
+      background-color: var(--v-hoverColor);
+    }
     &:disabled {
       cursor: default;
       background-color: var(--v-gray);
-      color: yellow;
+      color: var(--v-baseColor);
     }
   }
   h5 {
