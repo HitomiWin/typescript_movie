@@ -38,12 +38,14 @@
         justify-content: space-between;
         align-items: center;
         gap: 1em;
-
+        cursor: pointer;
         &.current {
           color: var(--v-hoverColor);
+          cursor: default;
         }
         &.disabled {
           color: var(--v-gray);
+          cursor: default;
         }
         & .totalNumber {
           font: 14px Arial, sans-serif;
