@@ -13,9 +13,8 @@
   --v-maxPrimaryPageWidth: 1366px;
 
   --v-imageBorderRadius: 5px;
-
-  --v-baseColor: yellow;
-  --v-hoverColor: yellowgreen;
+  --v-baseColor: #ffdf00;
+  --v-hoverColor: greenyellow;
   --v-gray: gray;
 }
 
