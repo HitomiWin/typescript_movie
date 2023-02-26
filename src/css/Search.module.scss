@@ -28,7 +28,7 @@
       &:hover {
         background-color: rgba(101, 101, 81, 0.347);
       }
-      & a {
+      & p {
         margin: 0 20px;
         font-size: clamp(16px, 2vw, 20px);
         padding: 0.5em 0;
@@ -44,7 +44,6 @@
         }
         &.disabled {
           color: var(--v-gray);
-          cursor: not-allowed;
         }
         & .totalNumber {
           font: 14px Arial, sans-serif;

@@ -2,7 +2,7 @@ import { FC, useMemo } from "react";
 import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
 
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface Props {
   persons: People | undefined;
@@ -19,6 +19,7 @@ const ResultsList: FC<Props> = ({
   page,
   dataCategory,
 }) => {
+  const navigate = useNavigate();
   const options = [
     { label: "Movies", name: IDataCategory.movies, value: movies },
     { label: "People", name: IDataCategory.people, value: persons },
@@ -30,6 +31,12 @@ const ResultsList: FC<Props> = ({
     () => (isDefault ? dataCategory : Object(params)["*"]),
     [params, dataCategory, isDefault]
   );
+  const handleOnClick = (name: string, diabled = true) => {
+    if (diabled) {
+      return;
+    }
+    navigate(`${name}?query=${query}&page=${page}`);
+  };
 
   return (
     <div className={styles.sidebarContainer}>
@@ -43,11 +50,11 @@ const ResultsList: FC<Props> = ({
             <li
               className={`${isCurrent && styles.current} list`}
               key={option.name}>
-              <Link
-                to={`${option.name}?query=${query}&page=${page}`}
-                className={`${isCurrent && styles.current} ${
-                  disabled ? styles.disabled : ""
-                }`}>
+              <p
+                onClick={() => handleOnClick(option.name, disabled)}
+                className={`${styles.resultList}${
+                  isCurrent && styles.current
+                } ${disabled ? styles.disabled : ""}`}>
                 {option.name}
                 <span
                   className={`${styles.totalNumber} ${
@@ -55,7 +62,7 @@ const ResultsList: FC<Props> = ({
                   }${isCurrent && styles.current}`}>
                   {option?.value?.total_results ?? 0}
                 </span>
-              </Link>
+              </p>
             </li>
           );
         })}
