@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import GenrePage from "./pages/GenrePage";
 import Home from "./pages/Home";

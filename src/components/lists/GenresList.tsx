@@ -7,7 +7,7 @@ import base from "../../css/Base.module.scss";
 import Loader from "../Loader";
 
 interface Props {
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: (page: number) => void;
   genreId: number | number;
 }
 

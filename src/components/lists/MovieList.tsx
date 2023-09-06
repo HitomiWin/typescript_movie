@@ -5,7 +5,7 @@ import styles from "../../css/SearchList.module.scss";
 import PaginationButtons from "../buttons/PaginationButtons";
 
 interface Props {
-  movies: Movies;
+  movies: Pick<Movies, "results" | "total_pages">;
   isPreviousMoviesData: boolean;
   page: number;
   setPage: Dispatch<React.SetStateAction<number>>;

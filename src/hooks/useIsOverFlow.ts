@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState, MutableRefObject } from "react";
 interface Props {
-  ref: MutableRefObject<HTMLDivElement>;
-  callback: Callback;
+  readonly ref: MutableRefObject<HTMLDivElement>;
+  readonly callback: Callback;
 }
 interface Callback {
   (callback: boolean): void;
