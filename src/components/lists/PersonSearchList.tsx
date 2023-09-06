@@ -1,15 +1,15 @@
-import { FC, useState, Dispatch, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { People } from "../../shared/type";
 import styles from "../../css/SearchList.module.scss";
 import PersonCard from "../cards/PersonCard";
 import PaginationButtons from "../buttons/PaginationButtons";
 
 interface Props {
-  persons: People;
-  isPreviousPersonsData: boolean;
-  page: number;
-  setPage: Dispatch<React.SetStateAction<number>>;
-  paramsPage: number | undefined;
+  readonly persons: Pick<People, "results" | "total_pages">;
+  readonly isPreviousPersonsData: boolean;
+  readonly page: number;
+  readonly setPage: (page: number) => void;
+  readonly paramsPage: number | undefined;
 }
 
 const PersonSearchList: FC<Props> = ({

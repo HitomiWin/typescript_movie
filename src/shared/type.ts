@@ -21,84 +21,79 @@ export enum IDataCategory {
 }
 
 export interface Movie {
-  poster_path: string | null;
-  backdrop_path: string | null;
-  adult: boolean;
-  overview: string;
-  release_date: string;
-  genres: Genre[];
-  id: number;
-  original_title: string;
-  original_language: string;
-  title: string;
-  runtime: number | undefined;
-  credits: Credits;
+  readonly poster_path: string | null;
+  readonly backdrop_path: string | null;
+  readonly adult: boolean;
+  readonly overview: string;
+  readonly release_date: string;
+  readonly genres: Genre[];
+  readonly id: number;
+  readonly original_title: string;
+  readonly original_language: string;
+  readonly title: string;
+  readonly runtime: number | undefined;
+  readonly credits: Credits;
 }
 
 export interface Movies {
-  page: number;
-  total_results: number;
-  total_pages: number;
-  results: Movie[];
+  readonly page: number;
+  readonly total_results: number;
+  readonly total_pages: number;
+  readonly results: Movie[];
 }
 
 export interface People {
-  page: number;
-  total_results: number;
-  total_pages: number;
-  results: Cast[];
+  readonly page: number;
+  readonly total_results: number;
+  readonly total_pages: number;
+  readonly results: Cast[];
 }
 
 export interface Genre {
-  id: number;
-  name: string;
+  readonly id: number;
+  readonly name: string;
 }
 
 export interface Cast {
-  adult: boolean;
-  gender: number;
-  id: number;
-  title: string;
-  also_known_as: string[];
-  biography: string;
-  place_of_birth: string;
-  birthday: string;
-  name: string;
-  original_name: string;
-  popularity: number;
-  profile_path: string;
-  cast_id: number;
-  character: string;
-  credit_id: string;
-  order: number;
-  poster_path: string;
+  readonly adult: boolean;
+  readonly gender: number;
+  readonly id: number;
+  readonly title: string;
+  readonly also_known_as: string[];
+  readonly biography: string;
+  readonly place_of_birth: string;
+  readonly birthday: string;
+  readonly name: string;
+  readonly original_name: string;
+  readonly popularity: number;
+  readonly profile_path: string;
+  readonly cast_id: number;
+  readonly character: string;
+  readonly credit_id: string;
+  readonly order: number;
+  readonly poster_path: string;
 }
 
 export interface Crew {
-  adult: boolean;
-  id: number;
-  name: string;
-  popularity: number;
-  profile_path: string;
-  credit_id: string;
-  job: string;
+  readonly adult: boolean;
+  readonly id: number;
+  readonly name: string;
+  readonly popularity: number;
+  readonly profile_path: string;
+  readonly credit_id: string;
+  readonly job: string;
 }
 
 export interface Credits {
-  cast: Cast[];
-  crew: Crew[];
+  readonly cast: Cast[];
+  readonly crew: Crew[];
 }
 
 export interface SearchQueryArg {
-  query: string;
-  page: number;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
+  readonly query: string;
+  readonly page: number;
 }
 
 export interface Genres {
-  genres: Genre[];
+  readonly genres: Genre[];
 }

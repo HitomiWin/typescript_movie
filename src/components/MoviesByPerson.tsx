@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { useQuery } from "react-query";
 import { getMoviesByPerson } from "../services/tmdbApi";
 import styles from "../css/Home.module.scss";
@@ -7,7 +7,7 @@ import MovieCardList from "./lists/MovieCardList";
 import Loader from "./Loader";
 
 interface Props {
-  person_id: number;
+  readonly person_id: number;
 }
 
 const MoviesByPerson: FC<Props> = ({ person_id }) => {

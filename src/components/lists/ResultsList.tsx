@@ -5,11 +5,11 @@ import styles from "../../css/Search.module.scss";
 import { useNavigate, useParams } from "react-router-dom";
 
 interface Props {
-  persons: People | undefined;
-  movies: Movies | undefined;
-  query: string | undefined;
-  page: number;
-  dataCategory: IDataCategory | null;
+  readonly persons: Pick<People, "total_results"> | undefined;
+  readonly movies: Pick<Movies, "total_results"> | undefined;
+  readonly query: string | undefined;
+  readonly page: number;
+  readonly dataCategory: IDataCategory | null;
 }
 
 const ResultsList: FC<Props> = ({
