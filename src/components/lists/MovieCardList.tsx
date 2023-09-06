@@ -4,7 +4,7 @@ import { Movies } from "../../shared/type";
 import styles from "../../css/CardList.module.scss";
 
 interface Props {
-  data: Movies;
+  data: Pick<Movies, "results">;
 }
 const MovieCardList: FC<Props> = ({ data }) => {
   return (

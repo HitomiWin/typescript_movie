@@ -5,7 +5,7 @@ import styles from "../../css/CardList.module.scss";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 interface Props {
-  movie: Movie;
+  readonly movie: Pick<Movie, "poster_path" | "id" | "title" | "release_date">;
 }
 
 const MovieCard: FC<Props> = ({ movie }) => {

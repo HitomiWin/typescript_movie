@@ -4,7 +4,7 @@ import { Cast } from "../../shared/type";
 import styles from "../../css/CardList.module.scss";
 
 interface Props {
-  readonly person: Cast;
+  readonly person: Pick<Cast, "profile_path" | "id" | "name">;
 }
 
 const PersonCard: FC<Props> = ({ person }) => {

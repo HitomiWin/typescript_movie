@@ -6,14 +6,14 @@ import styles from "../../css/SearchList.module.scss";
 import PaginationButtons from "../buttons/PaginationButtons";
 
 interface Props {
-  persons: People | undefined;
-  movies: Movies | undefined;
-  checkedValue: People | Movies | undefined;
-  isPreviousMoviesData: boolean;
-  isPreviousPersonsData: boolean;
-  page: number;
-  setPage: Dispatch<React.SetStateAction<number>>;
-  paramsPage: number | undefined;
+  readonly persons: People | undefined;
+  readonly movies: Movies | undefined;
+  readonly checkedValue: People | Movies | undefined;
+  readonly isPreviousMoviesData: boolean;
+  readonly isPreviousPersonsData: boolean;
+  readonly page: number;
+  readonly setPage: Dispatch<React.SetStateAction<number>>;
+  readonly paramsPage: number | undefined;
 }
 const SearchList: FC<Props> = ({
   persons,
