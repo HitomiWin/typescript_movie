@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
 import SearchForm from "../components/forms/SearchForm";
@@ -22,7 +22,7 @@ const SearchPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useUrlSearchParams(
     { query: undefined, page: undefined },
-    types
+    types,
   );
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState(searchParams.query?.toString());
@@ -39,7 +39,7 @@ const SearchPage = () => {
     () => getMoviesBySearch(searchParams),
     {
       keepPreviousData: true,
-    }
+    },
   );
 
   const {
@@ -53,7 +53,7 @@ const SearchPage = () => {
     () => getPersonsBySearch(searchParams),
     {
       keepPreviousData: true,
-    }
+    },
   );
 
   const isLoading = personsLoading || moviesLoading;
@@ -73,7 +73,6 @@ const SearchPage = () => {
       return;
     }
     if (isPeople) {
-      console.log("people");
       setDataCategory(IDataCategory.people);
       navigate(`/search/people?query=${query}&page=1`);
       return;

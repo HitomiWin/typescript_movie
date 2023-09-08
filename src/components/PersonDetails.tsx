@@ -1,4 +1,4 @@
-import { FC, useRef, MutableRefObject, useState } from "react";
+import React, { FC, useRef, MutableRefObject, useState } from "react";
 import { Cast } from "../shared/type";
 import styles from "../css/Person.module.scss";
 import { useIsOverflow } from "../hooks/useIsOverFlow";
@@ -42,7 +42,8 @@ const PersonDetail: FC<Props> = ({ person }) => {
               className={`${styles.textContents} ${
                 isExpand ? styles.expand : ""
               }`}
-              ref={ref}>
+              ref={ref}
+            >
               <h2 className={styles.head}>{person.name}</h2>
               {personBiography && <h3 className={styles.head}>Biography</h3>}
               {bipgraphytexts.map((text, i) => (

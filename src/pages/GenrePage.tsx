@@ -1,4 +1,4 @@
-import { useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getMoviesByGenre } from "../services/tmdbApi";
@@ -19,7 +19,7 @@ const GenrePage: FC = () => {
     () => getMoviesByGenre(parseInt(genre_id ?? ""), params.page as number),
     {
       keepPreviousData: true,
-    }
+    },
   );
   useEffect(() => {
     setParams({ ...params, page });

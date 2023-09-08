@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Cast } from "../../shared/type";
 import styles from "../../css/CardList.module.scss";
 import PersonCard from "../cards/PersonCard";
@@ -11,9 +11,7 @@ const PersonCardList: FC<Props> = ({ casts }) => {
     .slice(0, 20);
   return (
     <div className={`${styles.listContainer} wContainer`}>
-      {castArray?.map((cast, i) => (
-        <PersonCard person={cast} key={i} />
-      ))}
+      {castArray?.map((cast, i) => <PersonCard person={cast} key={i} />)}
     </div>
   );
 };

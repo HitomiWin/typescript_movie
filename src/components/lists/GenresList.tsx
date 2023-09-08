@@ -7,8 +7,8 @@ import base from "../../css/Base.module.scss";
 import Loader from "../Loader";
 
 interface Props {
-  setPage: (page: number) => void;
-  genreId: number | number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  genreId: number;
 }
 
 const GenresList: FC<Props> = ({ setPage, genreId }) => {
@@ -49,7 +49,8 @@ const GenresList: FC<Props> = ({ setPage, genreId }) => {
           <li
             className={`${genre.id === genreId && styles.current} list`}
             key={genre.id}
-            onClick={() => handleOnClick(genre.id, genre.name)}>
+            onClick={() => handleOnClick(genre.id, genre.name)}
+          >
             <span className={`${genre.id === genreId && styles.current} `}>
               {genre.name}
             </span>
