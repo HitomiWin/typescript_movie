@@ -1,3 +1,7 @@
+#Vscode setting
+vscode
+setting.json
+
 # Logs
 logs
 *.log
@@ -52,6 +56,7 @@ typings/
 
 # Optional eslint cache
 .eslintcache
+.eslint
 
 # Microbundle cache
 .rpt2_cache/

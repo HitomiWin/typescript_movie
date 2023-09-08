@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { useQuery } from "react-query";
 import styles from "../css/Home.module.scss";
 import base from "../css/Base.module.scss";
@@ -13,7 +13,7 @@ interface Props {
 }
 const CategorizedMovies: FC<Props> = ({ type, title }) => {
   const { isLoading, isError, error, data } = useQuery(type, () =>
-    getCategorizedMovies(type)
+    getCategorizedMovies(type),
   );
 
   if (isError) {

@@ -1,4 +1,4 @@
-import { Dispatch, FC } from "react";
+import React, { Dispatch, FC } from "react";
 import styles from "../../css/PaginationButtons.module.scss";
 
 interface Props {
@@ -20,7 +20,8 @@ const PagenationButtons: FC<Props> = ({
     <div className={styles.pagination}>
       <button
         onClick={() => setPage((current) => Math.max(current - 1, 1))}
-        disabled={page === 1}>
+        disabled={page === 1}
+      >
         Prev
       </button>
 
@@ -32,7 +33,8 @@ const PagenationButtons: FC<Props> = ({
             // isPrevious data used while the server fetch new data
             setPage((current) => current + 1);
         }}
-        disabled={isPreviousData || page === totalPages}>
+        disabled={isPreviousData || page === totalPages}
+      >
         Next
       </button>
     </div>

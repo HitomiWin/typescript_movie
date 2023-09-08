@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { People } from "../../shared/type";
 import styles from "../../css/SearchList.module.scss";
 import PersonCard from "../cards/PersonCard";
