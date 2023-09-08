@@ -1,4 +1,4 @@
-import { FC, CSSProperties } from "react";
+import React, { FC, CSSProperties } from "react";
 import { FadeLoader } from "react-spinners";
 import base from "../css/Base.module.scss";
 

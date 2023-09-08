@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Movie } from "../shared/type";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,8 @@ const MovieDetails: FC<Props> = ({ movie }) => {
   const topFiveCrew = crewArray
     .filter(
       (crew, i, self) =>
-        self.findIndex((c) => c.id === crew.id) === i && crew.job !== "Director"
+        self.findIndex((c) => c.id === crew.id) === i &&
+        crew.job !== "Director",
     )
     .slice(0, 5);
   const topFiveCrewWithDirector = director
@@ -37,7 +38,8 @@ const MovieDetails: FC<Props> = ({ movie }) => {
           style={{
             backgroundImage: `url(
         ${backdropUrl})`,
-          }}></div>
+          }}
+        ></div>
         <div className={`${styles.imgTextContainer}  wContainer`}>
           {posterUrl ? (
             <div className={styles.imgWrapper}>
@@ -67,7 +69,8 @@ const MovieDetails: FC<Props> = ({ movie }) => {
                   <div className={styles.crewNameJob} key={i}>
                     <p
                       onClick={() => navigate(`/person/${id}`)}
-                      className={styles.personName}>
+                      className={styles.personName}
+                    >
                       {name}
                     </p>
                     <p>{job}</p>{" "}

@@ -1,4 +1,4 @@
-import { FC, Dispatch } from "react";
+import React, { FC, Dispatch } from "react";
 import { Movies, People } from "../../shared/type";
 import MovieCard from "../cards/MovieCard";
 import PersonCard from "../cards/PersonCard";
