@@ -16,7 +16,8 @@ const SearchForm: FC<Props> = ({ handleSubmit, searchRef, initialValue }) => {
         className={styles.form}
         onSubmit={(e) => {
           handleSubmit(e);
-        }}>
+        }}
+      >
         <input
           type="search"
           ref={searchRef}
