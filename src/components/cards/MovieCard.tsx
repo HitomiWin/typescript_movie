@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Movie } from "../../shared/type";
 import styles from "../../css/CardList.module.scss";

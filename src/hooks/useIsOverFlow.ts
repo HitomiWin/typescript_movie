@@ -3,9 +3,11 @@ interface Props {
   readonly ref: MutableRefObject<HTMLDivElement>;
   readonly callback: Callback;
 }
+
 interface Callback {
   (callback: boolean): void;
 }
+
 export const useIsOverflow = ({ ref, callback }: Props) => {
   const [isOverflow, setIsOverflow] = useState(false);
 

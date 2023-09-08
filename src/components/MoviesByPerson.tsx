@@ -13,7 +13,7 @@ interface Props {
 const MoviesByPerson: FC<Props> = ({ person_id }) => {
   const { data, isLoading, isError, error } = useQuery(
     ["movies-peson", person_id],
-    () => getMoviesByPerson(person_id)
+    () => getMoviesByPerson(person_id),
   );
 
   if (isError) {

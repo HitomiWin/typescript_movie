@@ -1,4 +1,4 @@
-import { FC, useState, Dispatch, useEffect } from "react";
+import React, { FC, useState, Dispatch, useEffect } from "react";
 import { Movies } from "../../shared/type";
 import MovieCard from "../cards/MovieCard";
 import styles from "../../css/SearchList.module.scss";
