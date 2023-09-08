@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getMovieDetails } from "../services";
@@ -10,7 +11,7 @@ const MovieDetailsPage = () => {
   const { movie_id } = useParams();
   const { data, isLoading, isError, error } = useQuery(
     ["movie", movie_id],
-    () => getMovieDetails(Number(movie_id))
+    () => getMovieDetails(Number(movie_id)),
   );
 
   if (isLoading) {

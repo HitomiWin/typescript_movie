@@ -1,10 +1,10 @@
+import React, { useLayoutEffect } from "react";
 import styles from "../../css/Navbar.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavbarContext } from "../../contexts/NavBarContext";
 import { useGenresContext } from "../../contexts/GenreContext";
-import { useLayoutEffect } from "react";
 
 const Navigation = () => {
   const { showMenu, setShowMenu } = useNavbarContext();
@@ -36,7 +36,8 @@ const Navigation = () => {
         </div>
         <button
           className={`${styles.navbtn} ${showMenu && styles.showMenu}`}
-          onClick={handleNavButton}>
+          onClick={handleNavButton}
+        >
           <FontAwesomeIcon className={styles.faBars} icon={faBars} />
           <FontAwesomeIcon className={styles.faTimes} icon={faTimes} />
           <span className="sr-only">Menu</span>
@@ -47,7 +48,8 @@ const Navigation = () => {
               <NavLink
                 to="/"
                 onClick={() => hideMenu()}
-                className={styles.menuItem}>
+                className={styles.menuItem}
+              >
                 Home
               </NavLink>
             </li>
@@ -55,15 +57,17 @@ const Navigation = () => {
               <NavLink
                 to={`/genres/${genreId}`}
                 onClick={() => hideMenu()}
-                className={styles.menuItem}>
+                className={styles.menuItem}
+              >
                 Genre
               </NavLink>
             </li>
             <li>
               <NavLink
-                to={`/search`}
+                to={"/search"}
                 onClick={() => hideMenu()}
-                className={styles.menuItem}>
+                className={styles.menuItem}
+              >
                 <FontAwesomeIcon
                   className={styles.fas}
                   size="lg"

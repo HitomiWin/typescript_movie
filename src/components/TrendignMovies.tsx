@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { useUrlSearchParams } from "use-url-search-params";
 import styles from "../css/Home.module.scss";
@@ -20,7 +20,7 @@ const TrendignMovies = () => {
   >(
     params.timeWindow === ITrendingType.day
       ? ITrendingType.day
-      : ITrendingType.week
+      : ITrendingType.week,
   );
 
   const { isLoading, isError, error, data } = useQuery(
@@ -29,8 +29,8 @@ const TrendignMovies = () => {
       getTrendingMovies(
         params.timeWindow === ITrendingType.day
           ? ITrendingType.day
-          : ITrendingType.week
-      )
+          : ITrendingType.week,
+      ),
   );
   useEffect(() => {
     if (timeWindow) {
@@ -68,7 +68,8 @@ const TrendignMovies = () => {
               isDaily ? styles.active : styles.inactive
             }`}
             onClick={() => setTimeWindow(ITrendingType.day)}
-            disabled={isDaily}>
+            disabled={isDaily}
+          >
             Daily
           </button>
           <button
@@ -76,7 +77,8 @@ const TrendignMovies = () => {
               isWeekly ? styles.active : styles.inactive
             }`}
             onClick={() => setTimeWindow(ITrendingType.week)}
-            disabled={isWeekly}>
+            disabled={isWeekly}
+          >
             Weekly
           </button>
         </div>

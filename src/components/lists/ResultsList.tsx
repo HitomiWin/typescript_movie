@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { People, Movies, IDataCategory } from "../../shared/type";
 import styles from "../../css/Search.module.scss";
 
@@ -29,7 +29,7 @@ const ResultsList: FC<Props> = ({
   const isDefault = Object(params)["*"] === "";
   const current = useMemo(
     () => (isDefault ? dataCategory : Object(params)["*"]),
-    [params, dataCategory, isDefault]
+    [params, dataCategory, isDefault],
   );
   const handleOnClick = (name: string, diabled = true) => {
     if (diabled) {
@@ -49,17 +49,20 @@ const ResultsList: FC<Props> = ({
           return (
             <li
               className={`${isCurrent && styles.current} list`}
-              key={option.name}>
+              key={option.name}
+            >
               <p
                 onClick={() => handleOnClick(option.name, disabled)}
                 className={`${isCurrent ? styles.current : ""} ${
                   disabled ? styles.disabled : ""
-                }`}>
+                }`}
+              >
                 {option.name}
                 <span
                   className={`${styles.totalNumber} ${
                     disabled ? styles.disabled : ""
-                  }${isCurrent && styles.current}`}>
+                  }${isCurrent && styles.current}`}
+                >
                   {option?.value?.total_results ?? 0}
                 </span>
               </p>

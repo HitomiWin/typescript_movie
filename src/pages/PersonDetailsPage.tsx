@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getPerson } from "../services";
@@ -10,7 +11,7 @@ const PersonDetailsPage = () => {
   const { person_id } = useParams();
   const { data, isLoading, isError, error } = useQuery(
     ["person", person_id],
-    () => getPerson(Number(person_id))
+    () => getPerson(Number(person_id)),
   );
 
   if (isLoading) {
