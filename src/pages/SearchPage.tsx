@@ -73,7 +73,6 @@ const SearchPage = () => {
       return;
     }
     if (isPeople) {
-      console.log("people");
       setDataCategory(IDataCategory.people);
       navigate(`/search/people?query=${query}&page=1`);
       return;
