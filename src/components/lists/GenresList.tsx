@@ -49,7 +49,8 @@ const GenresList: FC<Props> = ({ setPage, genreId }) => {
           <li
             className={`${genre.id === genreId && styles.current} list`}
             key={genre.id}
-            onClick={() => handleOnClick(genre.id, genre.name)}>
+            onClick={() => handleOnClick(genre.id, genre.name)}
+          >
             <span className={`${genre.id === genreId && styles.current} `}>
               {genre.name}
             </span>
