@@ -17,7 +17,6 @@ test("should render hero component with search-form", async () => {
   expect(serachFormElement).toBeInTheDocument();
 });
 
-
 test("should render hero component with search box", async () => {
   render(
     <BrowserRouter>
@@ -26,7 +25,6 @@ test("should render hero component with search box", async () => {
       </Hero>
     </BrowserRouter>,
   );
-  const serachFormElement = screen.getByRole('searchbox');
+  const serachFormElement = screen.getByRole("searchbox");
   expect(serachFormElement).toBeInTheDocument();
 });
-

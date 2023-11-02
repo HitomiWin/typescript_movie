@@ -5,13 +5,11 @@ export enum ITrendingType {
 
 export enum ICategoryType {
   popular = "popular",
-  now_playing = "now_playing",
   top_rated = "top_rated",
 }
 
 export enum ICategoryTitle {
   popular = "What's Popular",
-  now_playing = "Playing Now",
   top_rated = "Top 20",
 }
 
