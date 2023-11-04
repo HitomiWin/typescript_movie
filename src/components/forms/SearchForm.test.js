@@ -15,12 +15,20 @@ describe("SearchForm ", () => {
   });
 
   test("should be able to type in input", async () => {
-    render(<SearchForm />);
+    render(
+      <SearchForm
+        initialValue={initialvalue}
+        handleSubmit={mockedHandleSubmit}
+      />,
+    );
     const inputElement = screen.getByPlaceholderText(
       /Search for a movie, person.../i,
     );
     fireEvent.change(inputElement, { target: { value: "Totoro" } });
     expect(inputElement.value).toBe("Totoro");
+    const buttonElement = screen.getByRole("button");
+    fireEvent.click(buttonElement);
+    expect(mockedHandleSubmit).toBeCalled();
   });
 
   test("should be show initial value in input field", async () => {
