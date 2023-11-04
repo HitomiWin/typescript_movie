@@ -3,12 +3,14 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    jest: true,
   },
 
   overrides: [
     {
       env: {
         node: true,
+        jest: true,
       },
       files: [".eslintrc.{js,cjs}"],
       parserOptions: {

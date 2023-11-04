@@ -31,8 +31,8 @@ const ResultsList: FC<Props> = ({
     () => (isDefault ? dataCategory : Object(params)["*"]),
     [params, dataCategory, isDefault],
   );
-  const handleOnClick = (name: string, diabled = true) => {
-    if (diabled) {
+  const handleOnClick = (name: string, disabled = true) => {
+    if (disabled) {
       return;
     }
     navigate(`${name}?query=${query}&page=${page}`);
@@ -48,12 +48,12 @@ const ResultsList: FC<Props> = ({
           const isCurrent = current === option.name;
           return (
             <li
-              className={`${isCurrent && styles.current} list`}
+              className={`${isCurrent ? styles.current : ""}list`}
               key={option.name}
             >
               <p
                 onClick={() => handleOnClick(option.name, disabled)}
-                className={`${isCurrent ? styles.current : ""} ${
+                className={`${isCurrent ? styles.current : ""}${
                   disabled ? styles.disabled : ""
                 }`}
               >
@@ -61,7 +61,7 @@ const ResultsList: FC<Props> = ({
                 <span
                   className={`${styles.totalNumber} ${
                     disabled ? styles.disabled : ""
-                  }${isCurrent && styles.current}`}
+                  }${isCurrent ? styles.current : ""}`}
                 >
                   {option?.value?.total_results ?? 0}
                 </span>
