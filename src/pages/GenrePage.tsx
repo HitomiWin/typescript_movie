@@ -23,6 +23,7 @@ const GenrePage: FC = () => {
   );
   useEffect(() => {
     setParams({ ...params, page });
+    Element.prototype.scrollTo = () => {};
     document.documentElement.scrollTo({
       top: 0,
       left: 0,
