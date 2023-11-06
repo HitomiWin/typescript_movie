@@ -73,7 +73,6 @@ const SearchPage = () => {
       return;
     }
     if (isPeople) {
-      console.log("people");
       setDataCategory(IDataCategory.people);
       navigate(`/search/people?query=${query}&page=1`);
       return;
@@ -84,7 +83,7 @@ const SearchPage = () => {
   }, [query, isMovies, isPeople]);
 
   useEffect(() => {
-    document.documentElement.scrollTo({
+    window.scrollTo({
       top: 0,
       left: 0,
     });

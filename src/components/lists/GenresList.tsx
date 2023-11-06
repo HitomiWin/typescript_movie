@@ -8,7 +8,7 @@ import Loader from "../Loader";
 
 interface Props {
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  genreId: number | number;
+  genreId: number;
 }
 
 const GenresList: FC<Props> = ({ setPage, genreId }) => {
