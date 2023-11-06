@@ -28,6 +28,7 @@ const MockeSeachPage = () => {
 describe("SearchPage", () => {
   test("should render NoQuery when input field is enpty", async () => {
     render(<MockeSeachPage />);
+    window.scrollTo = jest.fn();
     const headingElement = await screen.findByRole("heading", {
       name: /Search for a movie, person/i,
     });

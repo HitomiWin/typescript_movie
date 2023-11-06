@@ -33,7 +33,7 @@ const PagenationButtons: FC<Props> = ({
             // isPrevious data used while the server fetch new data
             setPage((current) => current + 1);
         }}
-        disabled={isPreviousData || page === totalPages}
+        disabled={isPreviousData || page >= totalPages}
       >
         Next
       </button>
