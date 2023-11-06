@@ -14,10 +14,6 @@ const Home = () => {
         title={ICategoryTitle.popular}
       />
       <CategorizedMovies
-        type={ICategoryType.now_playing}
-        title={ICategoryTitle.now_playing}
-      />
-      <CategorizedMovies
         type={ICategoryType.top_rated}
         title={ICategoryTitle.top_rated}
       />
