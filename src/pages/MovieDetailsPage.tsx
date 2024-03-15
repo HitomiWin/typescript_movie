@@ -32,8 +32,10 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <section>{data ? <MovieDetails movie={data} /> : null}</section>
-      <section>
+      <section className="wContainer">
+        {data ? <MovieDetails movie={data} /> : null}
+      </section>
+      <section className="wContainer">
         {data ? <PersonCardList casts={data.credits.cast} /> : null}
       </section>
     </>

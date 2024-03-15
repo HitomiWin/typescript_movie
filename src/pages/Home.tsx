@@ -6,7 +6,7 @@ import { ICategoryType, ICategoryTitle } from "../shared/type";
 
 const Home = () => {
   return (
-    <section>
+    <section className="wContainer">
       <Hero />
       <TrendignMovies />
       <CategorizedMovies
